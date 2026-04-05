@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dcv1jpnrf50fd"]
+
+[ext_resource type="Texture2D" uid="uid://dc8gy3nyprlp0" path="res://Sprites/Tharacia.png" id="1_jd3uc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s80wy"]
+radius = 25.0
+height = 80.0
+
+[node name="Tharacia" type="CharacterBody2D" unique_id=290018683]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=755831259]
+shape = SubResource("CapsuleShape2D_s80wy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926277280]
+texture = ExtResource("1_jd3uc")
