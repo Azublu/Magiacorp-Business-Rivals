@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://bhd3pj64xixwa"]
 
+[ext_resource type="PackedScene" uid="uid://dcv1jpnrf50fd" path="res://Scenes/Characters/tharacia.tscn" id="1_l756w"]
+[ext_resource type="PackedScene" uid="uid://djxq3j1lgbr54" path="res://Scenes/Characters/magical_girl.tscn" id="2_pu3va"]
+[ext_resource type="PackedScene" uid="uid://cah5kd3rkfk0v" path="res://Scenes/Stages/basic_arena.tscn" id="3_0e3vx"]
+
 [node name="MainGame" type="Node2D" unique_id=1176348593]
+
+[node name="BasicArena" parent="." unique_id=461245866 instance=ExtResource("3_0e3vx")]
+
+[node name="Camera2D" parent="BasicArena" index="3" unique_id=1753058332 node_paths=PackedStringArray("player1", "player2")]
+player1 = NodePath("../../MagicalGirl")
+player2 = NodePath("../../Tharacia")
+margin = Vector2(500, 500)
+
+[node name="MagicalGirl" parent="." unique_id=502907146 instance=ExtResource("2_pu3va")]
+position = Vector2(221, 347)
+
+[node name="Tharacia" parent="." unique_id=64088558 instance=ExtResource("1_l756w")]
+position = Vector2(714, 345)
+player_index = 1
+
+[editable path="BasicArena"]

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cah5kd3rkfk0v"]
+
+[ext_resource type="Script" uid="uid://5f7xpenho50c" path="res://Scripts/StageCamera.gd" id="1_oxl11"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_flikx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oxl11"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i41oj"]
+
+[node name="BasicArena" type="Node2D" unique_id=461245866]
+
+[node name="Floor" type="Line2D" parent="." unique_id=912856010]
+points = PackedVector2Array(-540, 500, 1500, 500)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor" unique_id=1232564937]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" unique_id=173655481]
+position = Vector2(478, 497)
+shape = SubResource("WorldBoundaryShape2D_flikx")
+
+[node name="LWall" type="StaticBody2D" parent="." unique_id=1680589049]
+position = Vector2(-540, 0)
+
+[node name="LeftWall" type="CollisionShape2D" parent="LWall" unique_id=24552076]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_oxl11")
+
+[node name="Line2D" type="Line2D" parent="LWall" unique_id=942075757]
+points = PackedVector2Array(0, 500, 0, -1000)
+
+[node name="RWall" type="StaticBody2D" parent="." unique_id=433713348]
+position = Vector2(1500, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RWall" unique_id=1512963012]
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_i41oj")
+
+[node name="Line2D" type="Line2D" parent="RWall" unique_id=546359705]
+points = PackedVector2Array(0, 500, 0, -1000)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1753058332]
+position = Vector2(480, 270)
+zoom = Vector2(0.8, 0.8)
+process_callback = 0
+limit_bottom = 600
+position_smoothing_enabled = true
+script = ExtResource("1_oxl11")
+max_zoom = 1.0

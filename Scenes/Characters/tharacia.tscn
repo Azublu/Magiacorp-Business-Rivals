@@ -1,15 +1,20 @@
 [gd_scene format=3 uid="uid://dcv1jpnrf50fd"]
 
 [ext_resource type="Texture2D" uid="uid://dc8gy3nyprlp0" path="res://Sprites/Tharacia.png" id="1_jd3uc"]
+[ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_s80wy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s80wy"]
 radius = 25.0
 height = 80.0
 
-[node name="Tharacia" type="CharacterBody2D" unique_id=290018683]
+[node name="Tharacia" type="CharacterBody2D" unique_id=64088558 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_s80wy")
+sprite = NodePath("TharaciaCollider/Sprite2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=755831259]
+[node name="TharaciaCollider" type="CollisionShape2D" parent="." unique_id=755831259]
+use_parent_material = true
 shape = SubResource("CapsuleShape2D_s80wy")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1926277280]
+[node name="Sprite2D" type="Sprite2D" parent="TharaciaCollider" unique_id=1926277280]
+use_parent_material = true
 texture = ExtResource("1_jd3uc")

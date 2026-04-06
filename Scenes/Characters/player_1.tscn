@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://t5lq2061qnhx"]
+
+[ext_resource type="Material" uid="uid://cdmjlsuhauqgf" path="res://Shaders/player1_outline.tres" id="1_s4o47"]
+[ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="2_uj68t"]
+[ext_resource type="PackedScene" uid="uid://dcv1jpnrf50fd" path="res://Scenes/Characters/tharacia.tscn" id="3_s4o47"]
+
+[node name="Player1" type="CharacterBody2D" unique_id=290018683 node_paths=PackedStringArray("sprite")]
+material = ExtResource("1_s4o47")
+script = ExtResource("2_uj68t")
+sprite = NodePath("Tharacia/Sprite2D")
+
+[node name="Tharacia" parent="." unique_id=755831259 instance=ExtResource("3_s4o47")]
+
+[editable path="Tharacia"]

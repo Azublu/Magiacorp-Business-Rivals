@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://djxq3j1lgbr54"]
+
+[ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_fnb6x"]
+[ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_fnb6x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnb6x"]
+radius = 13.0
+height = 56.0
+
+[sub_resource type="Animation" id="Animation_qis2q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bfuc1"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_t7iwb"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_8nndx"]
+resource_name = "jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_nrcec"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxp51"]
+_data = {
+&"RESET": SubResource("Animation_qis2q"),
+&"hurt": SubResource("Animation_bfuc1"),
+&"idle": SubResource("Animation_t7iwb"),
+&"jump": SubResource("Animation_8nndx"),
+&"run": SubResource("Animation_nrcec")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fnb6x"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qis2q"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bfuc1"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7iwb"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nndx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnb6x"]
+advance_mode = 2
+advance_expression = "velocity.y < -100"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qis2q"]
+advance_mode = 2
+advance_expression = "is_on_floor() == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bfuc1"]
+advance_mode = 2
+advance_expression = "abs(velocity.x) > 10"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7iwb"]
+advance_mode = 2
+advance_expression = "abs(velocity.x) < 10"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nrcec"]
+advance_mode = 2
+advance_expression = "velocity.y < -100"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nxp51"]
+states/hurt/node = SubResource("AnimationNodeAnimation_fnb6x")
+states/hurt/position = Vector2(704, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_qis2q")
+states/idle/position = Vector2(352, 100)
+states/jump/node = SubResource("AnimationNodeAnimation_bfuc1")
+states/jump/position = Vector2(530, 26)
+states/run/node = SubResource("AnimationNodeAnimation_t7iwb")
+states/run/position = Vector2(523, 180)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8nndx"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_fnb6x"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qis2q"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bfuc1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_t7iwb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_nrcec")]
+
+[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree")]
+script = ExtResource("1_fnb6x")
+sprite = NodePath("MagicalGirlCollider/Sprite2D")
+animation_tree = NodePath("AnimationTree")
+
+[node name="MagicalGirlCollider" type="CollisionShape2D" parent="." unique_id=1785357862]
+use_parent_material = true
+shape = SubResource("CapsuleShape2D_fnb6x")
+
+[node name="Sprite2D" type="Sprite2D" parent="MagicalGirlCollider" unique_id=1974693388]
+use_parent_material = true
+position = Vector2(0, -8)
+texture = ExtResource("2_fnb6x")
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MagicalGirlCollider/Sprite2D" unique_id=1190802629]
+libraries/ = SubResource("AnimationLibrary_nxp51")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1311672770]
+root_node = NodePath("../MagicalGirlCollider/Sprite2D")
+tree_root = SubResource("AnimationNodeStateMachine_nxp51")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../MagicalGirlCollider/Sprite2D/AnimationPlayer")
