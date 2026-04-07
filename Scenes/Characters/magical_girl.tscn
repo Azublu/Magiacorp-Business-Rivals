@@ -139,10 +139,12 @@ states/run/node = SubResource("AnimationNodeAnimation_t7iwb")
 states/run/position = Vector2(523, 180)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8nndx"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_fnb6x"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qis2q"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bfuc1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_t7iwb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_nrcec")]
 
-[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree")]
+[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer")]
 script = ExtResource("1_fnb6x")
 sprite = NodePath("MagicalGirlCollider/Sprite2D")
 animation_tree = NodePath("AnimationTree")
+dash_timer = NodePath("Timers/DashTimer")
+maxJumps = 3
 
 [node name="MagicalGirlCollider" type="CollisionShape2D" parent="." unique_id=1785357862]
 use_parent_material = true
@@ -163,3 +165,8 @@ root_node = NodePath("../MagicalGirlCollider/Sprite2D")
 tree_root = SubResource("AnimationNodeStateMachine_nxp51")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../MagicalGirlCollider/Sprite2D/AnimationPlayer")
+
+[node name="Timers" type="Node" parent="." unique_id=1233273172]
+
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=1993355404]
+one_shot = true

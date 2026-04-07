@@ -7,9 +7,10 @@
 radius = 25.0
 height = 80.0
 
-[node name="Tharacia" type="CharacterBody2D" unique_id=64088558 node_paths=PackedStringArray("sprite")]
+[node name="Tharacia" type="CharacterBody2D" unique_id=64088558 node_paths=PackedStringArray("sprite", "dash_timer")]
 script = ExtResource("1_s80wy")
 sprite = NodePath("TharaciaCollider/Sprite2D")
+dash_timer = NodePath("Timers/DashTimer")
 
 [node name="TharaciaCollider" type="CollisionShape2D" parent="." unique_id=755831259]
 use_parent_material = true
@@ -18,3 +19,8 @@ shape = SubResource("CapsuleShape2D_s80wy")
 [node name="Sprite2D" type="Sprite2D" parent="TharaciaCollider" unique_id=1926277280]
 use_parent_material = true
 texture = ExtResource("1_jd3uc")
+
+[node name="Timers" type="Node" parent="." unique_id=1810307042]
+
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=2092642048]
+one_shot = true

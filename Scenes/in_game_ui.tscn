@@ -1,0 +1,307 @@
+[gd_scene format=3 uid="uid://k30ll3piiyhw"]
+
+[ext_resource type="Texture2D" uid="uid://6jrhjr0rjwxd" path="res://icon.svg" id="1_5x6se"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwyif"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x6se"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey7ub"]
+bg_color = Color(1, 0.15686275, 0.22352941, 1)
+skew = Vector2(0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8663"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtfj6"]
+bg_color = Color(0.81191546, 0.68462294, 0.25420445, 1)
+skew = Vector2(0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3gp5"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orthm"]
+bg_color = Color(0.32560351, 0.7547491, 0.89841056, 1)
+skew = Vector2(0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ovgp"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(-0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfbn1"]
+bg_color = Color(1, 0.15686275, 0.22352941, 1)
+skew = Vector2(-0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_canx1"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(-0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrcd"]
+bg_color = Color(0.8117647, 0.6862745, 0.25490198, 1)
+skew = Vector2(-0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpmi5"]
+bg_color = Color(0.03137255, 0.03137255, 0.0627451, 0.39215687)
+skew = Vector2(-0.25, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ra50"]
+bg_color = Color(0.32560351, 0.7547491, 0.89841056, 1)
+skew = Vector2(-0.25, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1tpb"]
+draw_center = false
+skew = Vector2(-0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[node name="InGameUI" type="Control" unique_id=41853807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player1" type="MarginContainer" parent="." unique_id=1496999140]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player1" unique_id=2089482405]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Player1/HBoxContainer" unique_id=1346492543]
+layout_mode = 2
+texture = ExtResource("1_5x6se")
+
+[node name="Panel" type="Panel" parent="Player1/HBoxContainer/TextureRect" unique_id=954371766]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwyif")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player1/HBoxContainer" unique_id=756247460]
+layout_mode = 2
+
+[node name="Health" type="MarginContainer" parent="Player1/HBoxContainer/VBoxContainer" unique_id=430353685]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="DamagedBar" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Health" unique_id=962849892]
+custom_minimum_size = Vector2(690, 54)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_5x6se")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ey7ub")
+step = 1.0
+value = 80.0
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Health" unique_id=988352215]
+custom_minimum_size = Vector2(690, 54)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_s8663")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gtfj6")
+step = 1.0
+value = 70.0
+show_percentage = false
+
+[node name="Focus" type="MarginContainer" parent="Player1/HBoxContainer/VBoxContainer" unique_id=132811212]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player1/HBoxContainer/VBoxContainer/Focus" unique_id=526184536]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="FocusBar" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=754146126]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="FocusBar2" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1937893839]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="FocusBar3" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1050095233]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Player2" type="MarginContainer" parent="." unique_id=217752620]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -892.0
+offset_bottom = 160.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player2" unique_id=584859721]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player2/HBoxContainer" unique_id=1524654504]
+layout_mode = 2
+
+[node name="Health" type="MarginContainer" parent="Player2/HBoxContainer/VBoxContainer" unique_id=1650381948]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 8
+
+[node name="DamagedBar" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Health" unique_id=922304070]
+custom_minimum_size = Vector2(690, 54)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_2ovgp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dfbn1")
+step = 1.0
+value = 80.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Health" unique_id=1347897930]
+custom_minimum_size = Vector2(690, 54)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_canx1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybrcd")
+step = 1.0
+value = 70.0
+fill_mode = 1
+show_percentage = false
+
+[node name="Focus" type="MarginContainer" parent="Player2/HBoxContainer/VBoxContainer" unique_id=1941004020]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player2/HBoxContainer/VBoxContainer/Focus" unique_id=253688972]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="FocusBar3" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=577788029]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+step = 1.0
+value = 50.0
+fill_mode = 1
+show_percentage = false
+
+[node name="FocusBar2" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1384181282]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+step = 1.0
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="FocusBar" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1740128152]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+step = 1.0
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="Player2/HBoxContainer" unique_id=433148976]
+layout_mode = 2
+texture = ExtResource("1_5x6se")
+
+[node name="Panel" type="Panel" parent="Player2/HBoxContainer/TextureRect" unique_id=1636661156]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k1tpb")

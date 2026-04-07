@@ -3,21 +3,46 @@
 [ext_resource type="PackedScene" uid="uid://dcv1jpnrf50fd" path="res://Scenes/Characters/tharacia.tscn" id="1_l756w"]
 [ext_resource type="PackedScene" uid="uid://djxq3j1lgbr54" path="res://Scenes/Characters/magical_girl.tscn" id="2_pu3va"]
 [ext_resource type="PackedScene" uid="uid://cah5kd3rkfk0v" path="res://Scenes/Stages/basic_arena.tscn" id="3_0e3vx"]
+[ext_resource type="PackedScene" uid="uid://k30ll3piiyhw" path="res://Scenes/in_game_ui.tscn" id="4_6j5ir"]
 
 [node name="MainGame" type="Node2D" unique_id=1176348593]
 
-[node name="BasicArena" parent="." unique_id=461245866 instance=ExtResource("3_0e3vx")]
+[node name="Game" type="CanvasLayer" parent="." unique_id=1204364349]
 
-[node name="Camera2D" parent="BasicArena" index="3" unique_id=1753058332 node_paths=PackedStringArray("player1", "player2")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Game" unique_id=1901025275]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="Game/SubViewportContainer" unique_id=2146379530]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(960, 540)
+render_target_update_mode = 4
+
+[node name="BasicArena" parent="Game/SubViewportContainer/SubViewport" unique_id=461245866 instance=ExtResource("3_0e3vx")]
+
+[node name="Camera2D" parent="Game/SubViewportContainer/SubViewport/BasicArena" index="3" unique_id=1753058332 node_paths=PackedStringArray("player1", "player2")]
 player1 = NodePath("../../MagicalGirl")
 player2 = NodePath("../../Tharacia")
 margin = Vector2(500, 500)
 
-[node name="MagicalGirl" parent="." unique_id=502907146 instance=ExtResource("2_pu3va")]
+[node name="MagicalGirl" parent="Game/SubViewportContainer/SubViewport" unique_id=502907146 instance=ExtResource("2_pu3va")]
 position = Vector2(221, 347)
 
-[node name="Tharacia" parent="." unique_id=64088558 instance=ExtResource("1_l756w")]
+[node name="Tharacia" parent="Game/SubViewportContainer/SubViewport" unique_id=64088558 instance=ExtResource("1_l756w")]
 position = Vector2(714, 345)
 player_index = 1
 
-[editable path="BasicArena"]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1263404823]
+
+[node name="InGameUI" parent="GUI" unique_id=41853807 instance=ExtResource("4_6j5ir")]
+
+[node name="SubViewport" type="SubViewport" parent="GUI" unique_id=1719788101]
+size = Vector2i(1920, 1080)
+
+[editable path="Game/SubViewportContainer/SubViewport/BasicArena"]

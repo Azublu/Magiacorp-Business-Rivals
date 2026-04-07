@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+const DASH_PARTICLES = preload("uid://vhwsu32nmgvh")
+
 const ACCELERATION = 7000.0
 const FRICTION = 7000.0
 
@@ -8,22 +10,26 @@ const FALL_GRAVITY := 3000.0
 const FAST_FALL_GRAVITY := 5000.0
 const SLOW_FALL_GRAVITY := 1800.0
 
+@export_category("Components")
 @export var player_index = 0
-@export var speed : float = 400
-@export var jump_velocity : float = -1000
-#@export var aim_pivot : Marker2D
 @export var sprite : Sprite2D
 @export var animation_tree : AnimationTree
+@export var dash_timer : Timer
 
+@export_category("Character Stats")
+@export var default_speed : float = 400
+@export var dash_speed : float = 1000
+@export var jump_velocity : float = -1000
 @export var maxJumps : int = 2
+@export var dash_cooldown : float = 0.25
+@export var dash_duration : float = 0.25
 
 var input_velocity : Vector2 = Vector2.ZERO
-var horizontal_input : float
-var vertical_input : float
+var speed : float
+
 var facing_left : bool = true
-#var aim_vertical : float
-#var aim_horizontal : float
-#var aim_direction : Vector2
+var can_move : bool = true
+var dashing : bool = false
 
 var jump_input : bool
 var jump_pressed : bool
@@ -32,13 +38,13 @@ var jump_buffer_time : float = 0.1
 var jump_buffer_counter : float = 0.0
 var available_jumps : int
 
+enum States {GROUNDED,AIRBORNE,DASHING}
+var state : States = States.GROUNDED : set = set_state
+
 func _ready() -> void:
 	available_jumps = maxJumps
 
 func _process(_delta: float) -> void:
-	get_player_input()
-	#if aim_direction.length() > 0.7:
-		#aim_pivot.rotation = aim_direction.angle()
 	if velocity.x > 5 and facing_left:
 
 		sprite.scale.x = -1.0
@@ -48,41 +54,80 @@ func _process(_delta: float) -> void:
 		sprite.scale.x = 1.0
 		facing_left = true
 
-
 func _physics_process(delta: float) -> void:
+	var floor_damping : float = 1.0 if is_on_floor() else 0.2
+	var horizontal_input := InputHandler.get_horizontal_input(player_index)
+	var dash_input := InputHandler.get_dash_input(player_index)
 	input_velocity = Vector2.ZERO
 	
 	if not is_on_floor():
 		velocity.y += _get_gravity() * delta
 	else:
 		available_jumps = maxJumps
-	
+
+	dash(dash_input)
 	jump()
-	
-	var floor_damping : float = 1.0 if is_on_floor() else 0.2
-	
-	if horizontal_input:
+	if horizontal_input and not dashing:
 		velocity.x = move_toward(velocity.x, horizontal_input * speed, ACCELERATION * delta)
+	elif dashing:
+		if horizontal_input > 0.1:
+			velocity.x = 1 * dash_speed
+		elif horizontal_input < -0.1:
+			velocity.x = -1 * dash_speed
+		else:
+			if facing_left:
+				velocity.x = -1 * dash_speed
+			else:
+				velocity.x = 1 * dash_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
-		
 	
+	##NOTE: State Machine
+	match state:
+		States.GROUNDED:
+			speed = default_speed
+			if dashing:
+				state = States.DASHING
+			if not is_on_floor():
+				state = States.AIRBORNE
+		States.AIRBORNE:
+			if is_on_floor():
+				state = States.GROUNDED
+		States.DASHING:
+			if not dashing:
+				if is_on_floor():
+					state = States.GROUNDED 
+				else:
+					state = States.AIRBORNE
 
 	move_and_slide()
 
-func get_player_input() -> void:
-	horizontal_input = Input.get_joy_axis(player_index,JOY_AXIS_LEFT_X)
-	vertical_input = Input.get_joy_axis(player_index,JOY_AXIS_LEFT_Y)
+func set_state(new_state: States) -> void:
+	var previous_state := state
+	state = new_state
 	
-	#aim_horizontal = Input.get_joy_axis(player_index,JOY_AXIS_RIGHT_X)
-	#aim_vertical = Input.get_joy_axis(player_index,JOY_AXIS_RIGHT_Y)
-	#aim_direction = Vector2(aim_horizontal,aim_vertical).normalized()
+	print("STATE CHANGED: " + str(state))
+	
+	match state:
+		States.GROUNDED:
+			pass
+		States.AIRBORNE:
+			pass
+		States.DASHING:
+			
+			can_move = false
 
+	match previous_state:
+		States.GROUNDED:
+			pass
+		States.AIRBORNE:
+			pass
+		States.DASHING:
+			can_move = true
 
 func jump() -> void:
-	#if is_on_floor() and jump_pressed:
-		#velocity.y = jump_velocity
-	jump_input = Input.is_joy_button_pressed(player_index,JOY_BUTTON_A)
+	##NOTE: Attempt to handle buffering jump inputs
+	jump_input = InputHandler.get_jump_input(player_index)
 	if jump_input and not jump_pressed:
 		
 		if not is_on_floor() and available_jumps > 0:
@@ -107,10 +152,21 @@ func jump() -> void:
 	if !jump_pressed:
 		if velocity.y < -100:
 			velocity.y = -100
-	
+
+func dash(dash_input) -> void:
+	if dash_input and dash_timer.is_stopped():
+		var new_dash_particle = DASH_PARTICLES.instantiate()
+		if facing_left:
+			new_dash_particle.scale.x = -1.0
+		add_child(new_dash_particle)
+		dashing = true
+		dash_timer.start(dash_duration)
+		await dash_timer.timeout
+		dashing = false
+		dash_timer.start(dash_cooldown)
+
 func _get_gravity() -> float:
-	
-	
+	var vertical_input = InputHandler.get_vertical_input(player_index)
 	if vertical_input > 0.5:
 		return FAST_FALL_GRAVITY
 	return GRAVITY if velocity.y < 0 else FALL_GRAVITY
