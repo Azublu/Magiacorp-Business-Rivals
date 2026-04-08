@@ -15,14 +15,27 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export var sprite : Sprite2D
 @export var animation_tree : AnimationTree
 @export var dash_timer : Timer
+@export var focus_regen_timer: Timer
 
 @export_category("Character Stats")
 @export var default_speed : float = 400
 @export var dash_speed : float = 1000
 @export var jump_velocity : float = -1000
-@export var maxJumps : int = 2
+@export var max_jumps : int = 2
 @export var dash_cooldown : float = 0.25
 @export var dash_duration : float = 0.25
+@export var max_health : int = 1000
+@export var max_focus : int = 100
+
+var health : int = 1000:
+	set(value):
+		health = value
+		if health <= 0:
+			pass
+var focus : int = 100:
+	set(value):
+		focus = value
+		update_focus(focus)
 
 var input_velocity : Vector2 = Vector2.ZERO
 var speed : float
@@ -42,7 +55,7 @@ enum States {GROUNDED,AIRBORNE,DASHING}
 var state : States = States.GROUNDED : set = set_state
 
 func _ready() -> void:
-	available_jumps = maxJumps
+	available_jumps = max_jumps
 
 func _process(_delta: float) -> void:
 	if velocity.x > 5 and facing_left:
@@ -54,7 +67,14 @@ func _process(_delta: float) -> void:
 		sprite.scale.x = 1.0
 		facing_left = true
 
+	if focus < max_focus and focus_regen_timer.is_stopped():
+		focus_regen_timer.start(0.2)
+		await focus_regen_timer.timeout
+		focus += 1
+
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		focus -= 10
 	var floor_damping : float = 1.0 if is_on_floor() else 0.2
 	var horizontal_input := InputHandler.get_horizontal_input(player_index)
 	var dash_input := InputHandler.get_dash_input(player_index)
@@ -63,7 +83,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += _get_gravity() * delta
 	else:
-		available_jumps = maxJumps
+		available_jumps = max_jumps
 
 	dash(dash_input)
 	jump()
@@ -155,6 +175,7 @@ func jump() -> void:
 
 func dash(dash_input) -> void:
 	if dash_input and dash_timer.is_stopped():
+		
 		var new_dash_particle = DASH_PARTICLES.instantiate()
 		if facing_left:
 			new_dash_particle.scale.x = -1.0
@@ -164,6 +185,9 @@ func dash(dash_input) -> void:
 		await dash_timer.timeout
 		dashing = false
 		dash_timer.start(dash_cooldown)
+
+func update_focus(new_focus : int):
+	EventHandler.player_health_changed.emit(new_focus,player_index)
 
 func _get_gravity() -> float:
 	var vertical_input = InputHandler.get_vertical_input(player_index)

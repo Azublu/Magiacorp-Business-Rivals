@@ -1,0 +1,394 @@
+[gd_scene format=3 uid="uid://db10c4vkmbk8n"]
+
+[ext_resource type="Texture2D" uid="uid://cpip1gqk354wn" path="res://Sprites/Icons/MagicalGirlIcon.png" id="1_o8raw"]
+[ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_wqg5r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yuuj"]
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2b87j"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krxhl"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[node name="CharacterSelect" type="Control" unique_id=694519422]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=928811827]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Row1" type="HBoxContainer" parent="VBoxContainer" unique_id=115212341]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="CharacterIcon" type="Control" parent="VBoxContainer/Row1" unique_id=1561401614]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row1/CharacterIcon" unique_id=1131542709]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row1/CharacterIcon/ClippingMask" unique_id=1616013741]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_o8raw")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row1/CharacterIcon" unique_id=1042617841]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon2" type="Control" parent="VBoxContainer/Row1" unique_id=1763433426]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row1/CharacterIcon2" unique_id=1384505143]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row1/CharacterIcon2/ClippingMask" unique_id=2037968350]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wqg5r")
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row1/CharacterIcon2" unique_id=265032707]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon3" type="Control" parent="VBoxContainer/Row1" unique_id=1269303048]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row1/CharacterIcon3" unique_id=1766447198]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row1/CharacterIcon3/ClippingMask" unique_id=1542749574]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row1/CharacterIcon3" unique_id=2141795602]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="Row2" type="HBoxContainer" parent="VBoxContainer" unique_id=1221300758]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="CharacterIcon" type="Control" parent="VBoxContainer/Row2" unique_id=1920712857]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row2/CharacterIcon" unique_id=710917059]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row2/CharacterIcon/ClippingMask" unique_id=1590198187]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row2/CharacterIcon" unique_id=1170962755]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon2" type="Control" parent="VBoxContainer/Row2" unique_id=1433345423]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row2/CharacterIcon2" unique_id=1378992631]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row2/CharacterIcon2/ClippingMask" unique_id=1719375828]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row2/CharacterIcon2" unique_id=935042190]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon3" type="Control" parent="VBoxContainer/Row2" unique_id=1566870049]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row2/CharacterIcon3" unique_id=404019132]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row2/CharacterIcon3/ClippingMask" unique_id=2013501861]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row2/CharacterIcon3" unique_id=1190248928]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="Row3" type="HBoxContainer" parent="VBoxContainer" unique_id=910775551]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="CharacterIcon" type="Control" parent="VBoxContainer/Row3" unique_id=2095949390]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row3/CharacterIcon" unique_id=516873900]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row3/CharacterIcon/ClippingMask" unique_id=1843623951]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row3/CharacterIcon" unique_id=93591249]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon2" type="Control" parent="VBoxContainer/Row3" unique_id=1612557593]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row3/CharacterIcon2" unique_id=1219457383]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row3/CharacterIcon2/ClippingMask" unique_id=1258606571]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row3/CharacterIcon2" unique_id=831807752]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="CharacterIcon3" type="Control" parent="VBoxContainer/Row3" unique_id=973079078]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="ClippingMask" type="Panel" parent="VBoxContainer/Row3/CharacterIcon3" unique_id=1878539226]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4yuuj")
+
+[node name="Player1Icon" type="TextureRect" parent="VBoxContainer/Row3/CharacterIcon3/ClippingMask" unique_id=740118676]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Row3/CharacterIcon3" unique_id=1064925083]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2b87j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1598759465]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Player1" type="MarginContainer" parent="HBoxContainer" unique_id=783273003]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Player1" unique_id=525557935]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_krxhl")
+
+[node name="Title" type="MarginContainer" parent="HBoxContainer" unique_id=1261838766]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 64
+
+[node name="Label" type="Label" parent="HBoxContainer/Title" unique_id=1892772484]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "CHOOSE YOUR 
+MAGICAL GIRL!"
+horizontal_alignment = 1
+
+[node name="Player2" type="MarginContainer" parent="HBoxContainer" unique_id=683304911]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_bottom = 32
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Player2" unique_id=772970002]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_krxhl")

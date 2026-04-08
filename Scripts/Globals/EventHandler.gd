@@ -7,9 +7,8 @@ extends Node
 ##https://gdscript.com/solutions/signals-godot/
 
 #TODO: Setup signals that other scripts connect to
-
 signal player_health_changed(old_health,new_health,player_index)
-
+signal player_focus_changed(current_focus, player_index)
 ##NOTE: Attempt to translate Unity EventHandler into Godot
 #static var event_dictionary : Dictionary[String,Array]
 #

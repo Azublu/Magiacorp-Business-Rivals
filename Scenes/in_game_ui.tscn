@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://k30ll3piiyhw"]
 
 [ext_resource type="Texture2D" uid="uid://cpip1gqk354wn" path="res://Sprites/Icons/MagicalGirlIcon.png" id="1_ey7ub"]
+[ext_resource type="Script" uid="uid://crsqvo1ympjr4" path="res://Scripts/InGameUI.gd" id="1_gtfj6"]
 [ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_gtfj6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4gx1"]
@@ -137,13 +138,28 @@ border_width_bottom = 5
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
-[node name="InGameUI" type="Control" unique_id=41853807]
+[node name="InGameUI" type="Control" unique_id=41853807 node_paths=PackedStringArray("player1_health", "player1_damaged_health", "player1_focus1", "player1_focus2", "player1_focus3", "player1_focus4", "player1_focus5", "player2_health", "player2_damaged_health", "player2_focus1", "player2_focus2", "player2_focus3", "player2_focus4", "player2_focus5")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gtfj6")
+player1_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/HealthBar")
+player1_damaged_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/DamagedBar")
+player1_focus1 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
+player1_focus2 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player1_focus3 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
+player1_focus4 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
+player1_focus5 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
+player2_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/HealthBar")
+player2_damaged_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/DamagedBar")
+player2_focus1 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
+player2_focus2 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player2_focus3 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
+player2_focus4 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
+player2_focus5 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
 
 [node name="Player1" type="MarginContainer" parent="." unique_id=1496999140]
 layout_mode = 0
@@ -230,8 +246,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 show_percentage = false
 
 [node name="FocusBar2" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1305502629]
@@ -239,8 +256,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 show_percentage = false
 
 [node name="FocusBar3" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1100776264]
@@ -248,8 +266,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 show_percentage = false
 
 [node name="FocusBar4" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1186882032]
@@ -257,8 +276,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 show_percentage = false
 
 [node name="FocusBar5" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=482301016]
@@ -266,8 +286,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 show_percentage = false
 
 [node name="Player2" type="MarginContainer" parent="." unique_id=217752620]
@@ -330,8 +351,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 fill_mode = 1
 show_percentage = false
 
@@ -340,8 +362,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 fill_mode = 1
 show_percentage = false
 
@@ -350,8 +373,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 fill_mode = 1
 show_percentage = false
 
@@ -360,8 +384,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 fill_mode = 1
 show_percentage = false
 
@@ -370,8 +395,9 @@ custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+max_value = 20.0
 step = 1.0
-value = 100.0
+value = 20.0
 fill_mode = 1
 show_percentage = false
 
