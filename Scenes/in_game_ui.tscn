@@ -1,6 +1,16 @@
 [gd_scene format=3 uid="uid://k30ll3piiyhw"]
 
-[ext_resource type="Texture2D" uid="uid://6jrhjr0rjwxd" path="res://icon.svg" id="1_5x6se"]
+[ext_resource type="Texture2D" uid="uid://cpip1gqk354wn" path="res://Sprites/Icons/MagicalGirlIcon.png" id="1_ey7ub"]
+[ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_gtfj6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4gx1"]
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwyif"]
 draw_center = false
@@ -108,6 +118,15 @@ expand_margin_bottom = 5.0
 bg_color = Color(0.32560351, 0.7547491, 0.89841056, 1)
 skew = Vector2(-0.25, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_reyon"]
+skew = Vector2(-0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1tpb"]
 draw_center = false
 skew = Vector2(-0.25, 0)
@@ -136,9 +155,31 @@ theme_override_constants/margin_top = 32
 [node name="HBoxContainer" type="HBoxContainer" parent="Player1" unique_id=2089482405]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Player1/HBoxContainer" unique_id=1346492543]
+[node name="TextureRect" type="Control" parent="Player1/HBoxContainer" unique_id=1253007353]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("1_5x6se")
+
+[node name="ClippingMask" type="Panel" parent="Player1/HBoxContainer/TextureRect" unique_id=1876472663]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s4gx1")
+
+[node name="Player1Icon" type="TextureRect" parent="Player1/HBoxContainer/TextureRect/ClippingMask" unique_id=336836133]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -64.0
+offset_right = 88.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ey7ub")
 
 [node name="Panel" type="Panel" parent="Player1/HBoxContainer/TextureRect" unique_id=954371766]
 layout_mode = 0
@@ -334,9 +375,30 @@ value = 100.0
 fill_mode = 1
 show_percentage = false
 
-[node name="TextureRect" type="TextureRect" parent="Player2/HBoxContainer" unique_id=433148976]
+[node name="TextureRect" type="Control" parent="Player2/HBoxContainer" unique_id=901543611]
 layout_mode = 2
-texture = ExtResource("1_5x6se")
+
+[node name="ClippingMask" type="Panel" parent="Player2/HBoxContainer/TextureRect" unique_id=1946223305]
+clip_children = 1
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_reyon")
+
+[node name="Player2Icon" type="TextureRect" parent="Player2/HBoxContainer/TextureRect/ClippingMask" unique_id=445113687]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gtfj6")
 
 [node name="Panel" type="Panel" parent="Player2/HBoxContainer/TextureRect" unique_id=1636661156]
 layout_mode = 0
