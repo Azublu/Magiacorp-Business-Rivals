@@ -1,6 +1,7 @@
 extends Node
 
-##NOTE: Singleton pattern designated through engine in Project > Project Settings > Globals
+##NOTE: Singleton pattern designated through engine in 
+##Project > Project Settings > Globals
 
 func get_horizontal_input(player_index : int) -> float:
 	return Input.get_joy_axis(player_index,JOY_AXIS_LEFT_X)

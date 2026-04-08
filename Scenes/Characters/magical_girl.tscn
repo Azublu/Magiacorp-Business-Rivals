@@ -144,7 +144,6 @@ script = ExtResource("1_fnb6x")
 sprite = NodePath("MagicalGirlCollider/Sprite2D")
 animation_tree = NodePath("AnimationTree")
 dash_timer = NodePath("Timers/DashTimer")
-maxJumps = 3
 
 [node name="MagicalGirlCollider" type="CollisionShape2D" parent="." unique_id=1785357862]
 use_parent_material = true

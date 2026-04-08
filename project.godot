@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 InputHandler="*uid://tqbs3k5ssdh2"
+EventHandler="*uid://b2ixn0usnjyc"
 ParticlesCache="uid://dpto3cc85pbur"
 
 [display]

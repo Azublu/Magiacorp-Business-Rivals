@@ -185,7 +185,7 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="FocusBar" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=754146126]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
@@ -193,8 +193,8 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="FocusBar2" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1937893839]
-custom_minimum_size = Vector2(200, 40)
+[node name="FocusBar2" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1305502629]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
@@ -202,13 +202,31 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="FocusBar3" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1050095233]
-custom_minimum_size = Vector2(200, 40)
+[node name="FocusBar3" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1100776264]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
 step = 1.0
-value = 50.0
+value = 100.0
+show_percentage = false
+
+[node name="FocusBar4" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1186882032]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="FocusBar5" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=482301016]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_t3gp5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
+step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="Player2" type="MarginContainer" parent="." unique_id=217752620]
@@ -266,18 +284,38 @@ layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 2
 
-[node name="FocusBar3" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=577788029]
-custom_minimum_size = Vector2(200, 40)
+[node name="FocusBar5" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=944210066]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
 step = 1.0
-value = 50.0
+value = 100.0
 fill_mode = 1
 show_percentage = false
 
-[node name="FocusBar2" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1384181282]
-custom_minimum_size = Vector2(200, 40)
+[node name="FocusBar4" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=703922388]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+step = 1.0
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="FocusBar3" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1659548447]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
+step = 1.0
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="FocusBar2" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=2099372196]
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
@@ -287,7 +325,7 @@ fill_mode = 1
 show_percentage = false
 
 [node name="FocusBar" type="ProgressBar" parent="Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1740128152]
-custom_minimum_size = Vector2(200, 40)
+custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_cpmi5")
 theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
