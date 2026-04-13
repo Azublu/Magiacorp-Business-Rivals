@@ -138,7 +138,7 @@ border_width_bottom = 5
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
-[node name="InGameUI" type="Control" unique_id=41853807 node_paths=PackedStringArray("player1_health", "player1_damaged_health", "player1_focus1", "player1_focus2", "player1_focus3", "player1_focus4", "player1_focus5", "player2_health", "player2_damaged_health", "player2_focus1", "player2_focus2", "player2_focus3", "player2_focus4", "player2_focus5")]
+[node name="InGameUI" type="Control" unique_id=41853807 node_paths=PackedStringArray("player1_health", "player1_damaged_health", "player1_damaged_timer", "player1_focus1", "player1_focus2", "player1_focus3", "player1_focus4", "player1_focus5", "player2_health", "player2_damaged_health", "player2_damaged_timer", "player2_focus1", "player2_focus2", "player2_focus3", "player2_focus4", "player2_focus5")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,6 +148,7 @@ grow_vertical = 2
 script = ExtResource("1_gtfj6")
 player1_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/HealthBar")
 player1_damaged_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/DamagedBar")
+player1_damaged_timer = NodePath("Timers/Player1DamagedTimer")
 player1_focus1 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
 player1_focus2 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
 player1_focus3 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
@@ -155,6 +156,7 @@ player1_focus4 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContain
 player1_focus5 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
 player2_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/HealthBar")
 player2_damaged_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/DamagedBar")
+player2_damaged_timer = NodePath("Timers/Player2DamagedTimer")
 player2_focus1 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
 player2_focus2 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
 player2_focus3 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
@@ -218,8 +220,9 @@ custom_minimum_size = Vector2(690, 54)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_5x6se")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ey7ub")
+max_value = 1000.0
 step = 1.0
-value = 80.0
+value = 1000.0
 show_percentage = false
 
 [node name="HealthBar" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Health" unique_id=988352215]
@@ -227,8 +230,9 @@ custom_minimum_size = Vector2(690, 54)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_s8663")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gtfj6")
+max_value = 1000.0
 step = 1.0
-value = 70.0
+value = 1000.0
 show_percentage = false
 
 [node name="Focus" type="MarginContainer" parent="Player1/HBoxContainer/VBoxContainer" unique_id=132811212]
@@ -320,8 +324,9 @@ custom_minimum_size = Vector2(690, 54)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_2ovgp")
 theme_override_styles/fill = SubResource("StyleBoxFlat_dfbn1")
+max_value = 1000.0
 step = 1.0
-value = 80.0
+value = 1000.0
 fill_mode = 1
 show_percentage = false
 
@@ -330,8 +335,9 @@ custom_minimum_size = Vector2(690, 54)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_canx1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ybrcd")
+max_value = 1000.0
 step = 1.0
-value = 70.0
+value = 1000.0
 fill_mode = 1
 show_percentage = false
 
@@ -431,3 +437,11 @@ layout_mode = 0
 offset_right = 128.0
 offset_bottom = 128.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_k1tpb")
+
+[node name="Timers" type="Node" parent="." unique_id=882106828]
+
+[node name="Player1DamagedTimer" type="Timer" parent="Timers" unique_id=387052569]
+one_shot = true
+
+[node name="Player2DamagedTimer" type="Timer" parent="Timers" unique_id=330788121]
+one_shot = true

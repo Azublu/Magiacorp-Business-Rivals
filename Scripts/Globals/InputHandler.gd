@@ -14,3 +14,6 @@ func get_jump_input(player_index:int) -> bool:
 
 func get_dash_input(player_index : int) -> float:
 	return Input.get_joy_axis(player_index, JOY_AXIS_TRIGGER_LEFT)
+
+func get_attack_input(player_index: int) -> float:
+	return Input.is_joy_button_pressed(player_index,JOY_BUTTON_X)
