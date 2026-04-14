@@ -2,6 +2,7 @@ extends Area2D
 class_name Hurtbox
 
 @export var player_index : int
+@export var shielding : bool = false
 
 func _init() -> void:
 	collision_layer = 0
@@ -16,6 +17,11 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	#Prevents player2 from hurting self as long as hitboxes and hurtboxes are configured properly
 	if player_index == hitbox.player_index: return
 	#NOTE to self - Look into GODOT collision layers later, may be more efficient
+
+	if shielding:
+		var knockback_dir = -(hitbox.owner.global_position - global_position).normalized()
+		EventHandler.player_hit.emit(0,knockback_dir,hitbox.knockback,hitbox.knockback_dur,player_index)
+		return
 
 	#This nested if statement decides what happens when a hit is detected
 	if hitbox.name == "Hitbox":

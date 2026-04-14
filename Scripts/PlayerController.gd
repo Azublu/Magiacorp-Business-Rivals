@@ -18,6 +18,7 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export var hurtbox : Hurtbox
 @export var hitbox : Hitbox
 @export var health_component : HealthComponent
+@export var shield : Sprite2D
 
 @export_category("Character Stats")
 @export var default_speed : float = 400
@@ -30,6 +31,7 @@ const SLOW_FALL_GRAVITY := 1800.0
 
 @export_category("InGame Variables")
 @export var attacking : bool = false
+@export var blocking : bool = false
 
 var input_velocity : Vector2 = Vector2.ZERO
 
@@ -48,12 +50,14 @@ var jump_buffer_time : float = 0.1
 var jump_buffer_counter : float = 0.0
 var available_jumps : int
 
-enum States {GROUNDED,AIRBORNE,DASHING,ATTACKING}
+enum States {GROUNDED,AIRBORNE,DASHING,ATTACKING,BLOCKING}
 var state : States = States.GROUNDED : set = set_state
 
+##NOTE: Awake equivalent
 func _init() -> void:
 	EventHandler.player_hit.connect(player_hit)
 
+##NOTE: Start equivalent
 func _ready() -> void:
 	available_jumps = max_jumps
 	if hurtbox:
@@ -64,9 +68,8 @@ func _ready() -> void:
 		health_component.player_index = player_index
 	else:
 		print("Missing health component")
-	
 
-#Update equivalent
+##NOTE: Update equivalent
 func _process(_delta: float) -> void:
 	if velocity.x > 5 and facing_left:
 		if on_hit: return
@@ -77,15 +80,17 @@ func _process(_delta: float) -> void:
 		sprite.scale.x = 1.0
 		facing_left = true
 
-#FixedUpdate equivalent
+##NOTE: FixedUpdate equivalent
 func _physics_process(delta: float) -> void:
-	###NOTE: For demonstration purpose
+	###NOTE: Following if statement is for demonstration and testing purpose
 	#if Input.is_action_just_pressed("ui_accept"):
 		#attacking = true
 	var floor_damping : float = 1.0 if is_on_floor() else 0.2
 	var horizontal_input := InputHandler.get_horizontal_input(player_index)
 	var dash_input := InputHandler.get_dash_input(player_index)
 	var attack_input := InputHandler.get_attack_input(player_index)
+	var block_input := InputHandler.get_block_input(player_index)
+	
 	input_velocity = Vector2.ZERO
 	
 	if not is_on_floor():
@@ -98,6 +103,7 @@ func _physics_process(delta: float) -> void:
 	
 	if knockback_timer > 0.0:
 		on_hit = true 
+		##NOTE: Can increase this for stronger vertical launch on knockback
 		velocity.y = -100
 		if knockback != Vector2.ZERO:
 			velocity.x = knockback.x
@@ -120,6 +126,8 @@ func _physics_process(delta: float) -> void:
 					state = States.AIRBORNE
 				if attack_input: 
 					state = States.ATTACKING
+				elif block_input:
+					state = States.BLOCKING
 			States.AIRBORNE:
 				velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
 				if dashing:
@@ -128,6 +136,8 @@ func _physics_process(delta: float) -> void:
 					state = States.GROUNDED
 				if attack_input: 
 					state = States.ATTACKING
+				elif block_input:
+					state = States.BLOCKING
 			States.DASHING:
 				if dashing:
 					if horizontal_input > 0.1:
@@ -150,43 +160,47 @@ func _physics_process(delta: float) -> void:
 					state = States.GROUNDED
 				elif not attacking:
 					state = States.AIRBORNE
-
+			States.BLOCKING:
+				velocity.x = movement(horizontal_input,0,floor_damping,delta)
+				if dashing:
+					state = States.DASHING
+				if not block_input and is_on_floor():
+					state = States.GROUNDED
+				elif not block_input:
+					state = States.AIRBORNE
 	move_and_slide()
 
-#Effectively an extended set function, triggers once when state is changed 
+##NOTE: Effectively an extended set function, triggers once when state is changed 
 func set_state(new_state: States) -> void:
 	var previous_state := state
 	state = new_state
-	
-	#print("STATE CHANGED: " + str(state))
-	
+
 	match state:
-		States.GROUNDED:
-			pass
-		States.AIRBORNE:
-			pass
 		States.DASHING:
 			attacking = false
 			can_move = false
 		States.ATTACKING:
 			attacking = true
+		States.BLOCKING:
+			blocking = true
+			shield.visible = true
 
 	match previous_state:
-		States.GROUNDED:
-			pass
-		States.AIRBORNE:
-			pass
 		States.DASHING:
 			can_move = true
+		States.BLOCKING:
+			blocking = false
+			shield.visible = false
 
+##NOTE: Handles movement logic
 func movement(horizontal_input, speed : float, floor_damping :float,delta : float) -> float:
 	if horizontal_input:
 		return move_toward(velocity.x, horizontal_input * speed, ACCELERATION * delta)
 	else:
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 
-##NOTE: Recieve player damage info from 
-func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
+##NOTE: Recieve player damage info from EventBus
+func player_hit(_damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
 	if received_index == player_index : return
 	apply_knockback(knockback_dir,knockback_force,knockback_dur)
 
@@ -221,7 +235,7 @@ func jump() -> void:
 		if velocity.y < -100:
 			velocity.y = -100
 
-#Handles dash input and spawning dash particles
+##NOTE: Handles dash input and spawning dash particles
 func dash(dash_input) -> void:
 	if dash_input and dash_timer.is_stopped():
 		
@@ -235,13 +249,16 @@ func dash(dash_input) -> void:
 		dashing = false
 		dash_timer.start(dash_cooldown)
 
-#Handles gravity to allow for player to fast fall
+##NOTE: Handles gravity to allow for player to fast fall
 func _get_gravity() -> float:
 	var vertical_input = InputHandler.get_vertical_input(player_index)
 	if vertical_input > 0.5:
 		return FAST_FALL_GRAVITY
+	if blocking:
+		return FAST_FALL_GRAVITY
 	return GRAVITY if velocity.y < 0 else FALL_GRAVITY
 
+##NOTE: Applies a set amount of knockback that is controlled within Physics Process
 func apply_knockback(direction: Vector2, force: float, knockback_dur: float) -> void:
 	knockback = direction * force
 	knockback_timer = knockback_dur
