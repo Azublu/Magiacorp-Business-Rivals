@@ -16,6 +16,8 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export var animation_tree : AnimationTree
 @export var dash_timer : Timer
 @export var focus_regen_timer: Timer
+@export var hurtbox : Hurtbox
+@export var hitbox : Hitbox
 
 @export_category("Character Stats")
 @export var default_speed : float = 400
@@ -48,7 +50,10 @@ var input_velocity : Vector2 = Vector2.ZERO
 var facing_left : bool = true
 var can_move : bool = true
 var dashing : bool = false
+var on_hit : bool = false
 
+var knockback: Vector2 = Vector2.ZERO
+var knockback_timer: float = 0.0
 
 var jump_input : bool
 var jump_pressed : bool
@@ -60,17 +65,25 @@ var available_jumps : int
 enum States {GROUNDED,AIRBORNE,DASHING,ATTACKING}
 var state : States = States.GROUNDED : set = set_state
 
+func _init() -> void:
+	EventHandler.player_hit.connect(player_hit)
+
 func _ready() -> void:
 	available_jumps = max_jumps
+	if hurtbox:
+		hurtbox.player_index = player_index
+	if hitbox:
+		hitbox.player_index = player_index
+	
 
 #Update equivalent
 func _process(_delta: float) -> void:
 	if velocity.x > 5 and facing_left:
-
+		if on_hit: return
 		sprite.scale.x = -1.0
 		facing_left = false
 	elif velocity.x < -5 and not facing_left:
-
+		if on_hit: return
 		sprite.scale.x = 1.0
 		facing_left = true
 
@@ -97,7 +110,20 @@ func _physics_process(delta: float) -> void:
 	
 	dash(dash_input)
 	jump()
-
+	
+	if knockback_timer > 0.0:
+		on_hit = true 
+		velocity.y = -100
+		if knockback != Vector2.ZERO:
+			velocity.x = knockback.x
+			#velocity.y = -(abs(knockback.y) * 100)
+			knockback_timer -= delta
+		else:
+			knockback_timer = 0.0
+		if knockback_timer <= 0.0:
+			knockback = Vector2.ZERO
+		
+	
 	##NOTE: Old movement handler code
 	#if horizontal_input and not dashing:
 		#velocity.x = move_toward(velocity.x, horizontal_input * speed, ACCELERATION * delta)
@@ -113,47 +139,48 @@ func _physics_process(delta: float) -> void:
 				#velocity.x = 1 * dash_speed
 	#else:
 		#velocity.x = move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
-
+	else:
+		on_hit = false
 	##NOTE: State Machine
-	match state:
-		States.GROUNDED:
-			velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
-			if dashing:
-				state = States.DASHING
-			if not is_on_floor():
-				state = States.AIRBORNE
-			if attack_input: 
-				state = States.ATTACKING
-		States.AIRBORNE:
-			velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
-			if dashing:
-				state = States.DASHING
-			if is_on_floor():
-				state = States.GROUNDED
-			if attack_input: 
-				state = States.ATTACKING
-		States.DASHING:
-			if dashing:
-				if horizontal_input > 0.1:
-					velocity.x = 1 * dash_speed
-				elif horizontal_input < -0.1:
-					velocity.x = -1 * dash_speed
-				else:
-					if facing_left:
+		match state:
+			States.GROUNDED:
+				velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
+				if dashing:
+					state = States.DASHING
+				if not is_on_floor():
+					state = States.AIRBORNE
+				if attack_input: 
+					state = States.ATTACKING
+			States.AIRBORNE:
+				velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
+				if dashing:
+					state = States.DASHING
+				if is_on_floor():
+					state = States.GROUNDED
+				if attack_input: 
+					state = States.ATTACKING
+			States.DASHING:
+				if dashing:
+					if horizontal_input > 0.1:
+						velocity.x = 1 * dash_speed
+					elif horizontal_input < -0.1:
 						velocity.x = -1 * dash_speed
 					else:
-						velocity.x = 1 * dash_speed
-			elif not dashing:
-				if is_on_floor():
-					state = States.GROUNDED 
-				else:
+						if facing_left:
+							velocity.x = -1 * dash_speed
+						else:
+							velocity.x = 1 * dash_speed
+				elif not dashing:
+					if is_on_floor():
+						state = States.GROUNDED 
+					else:
+						state = States.AIRBORNE
+			States.ATTACKING:
+				velocity.x = movement(horizontal_input,attack_speed,floor_damping,delta)
+				if not attacking and is_on_floor():
+					state = States.GROUNDED
+				elif not attacking:
 					state = States.AIRBORNE
-		States.ATTACKING:
-			velocity.x = movement(horizontal_input,attack_speed,floor_damping,delta)
-			if not attacking and is_on_floor():
-				state = States.GROUNDED
-			elif not attacking:
-				state = States.AIRBORNE
 
 	move_and_slide()
 
@@ -162,7 +189,7 @@ func set_state(new_state: States) -> void:
 	var previous_state := state
 	state = new_state
 	
-	print("STATE CHANGED: " + str(state))
+	#print("STATE CHANGED: " + str(state))
 	
 	match state:
 		States.GROUNDED:
@@ -188,6 +215,12 @@ func movement(horizontal_input, speed : float, floor_damping :float,delta : floa
 		return move_toward(velocity.x, horizontal_input * speed, ACCELERATION * delta)
 	else:
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
+
+func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
+	if received_index == player_index : return
+	health -= damage
+	update_health(health)
+	apply_knockback(knockback_dir,knockback_force,knockback_dur)
 
 ##NOTE: Attempt to handle buffering jump inputs
 func jump() -> void:
@@ -248,3 +281,7 @@ func _get_gravity() -> float:
 	if vertical_input > 0.5:
 		return FAST_FALL_GRAVITY
 	return GRAVITY if velocity.y < 0 else FALL_GRAVITY
+
+func apply_knockback(direction: Vector2, force: float, knockback_dur: float) -> void:
+	knockback = direction * force
+	knockback_timer = knockback_dur

@@ -9,6 +9,7 @@ extends Node
 #TODO: Setup signals that other scripts connect to
 signal player_health_changed(current_health,player_index)
 signal player_focus_changed(current_focus, player_index)
+signal player_hit(damage,knockback_dir,knockback_force,knockback_dur,player_index)
 
 ##NOTE: Attempt to translate Unity EventHandler into Godot
 #static var event_dictionary : Dictionary[String,Array]

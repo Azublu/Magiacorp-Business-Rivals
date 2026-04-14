@@ -9,12 +9,13 @@ gradient = SubResource("Gradient_mtejg")
 
 [resource]
 particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(0, 10, 0)
-direction = Vector3(-90, 0, 0)
-initial_velocity_min = 109.579994
-initial_velocity_max = 198.62
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+spread = 75.0
+initial_velocity_min = 50.0
+initial_velocity_max = 90.0
 gravity = Vector3(-90, 0, 0)
 scale_min = 3.0
-scale_max = 3.0
+scale_max = 9.0
 color_ramp = SubResource("GradientTexture1D_ilep4")

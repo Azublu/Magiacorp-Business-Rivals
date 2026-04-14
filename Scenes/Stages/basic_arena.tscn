@@ -19,6 +19,28 @@ points = PackedVector2Array(-540, 500, 1500, 500)
 position = Vector2(478, 497)
 shape = SubResource("WorldBoundaryShape2D_flikx")
 
+[node name="FloorMarks" type="Node2D" parent="Floor" unique_id=1200915224]
+position = Vector2(478, 497)
+
+[node name="Line2D" type="Line2D" parent="Floor/FloorMarks" unique_id=1187802060]
+points = PackedVector2Array(0, 0, 0, 100)
+
+[node name="Line2D2" type="Line2D" parent="Floor/FloorMarks" unique_id=114417024]
+position = Vector2(-500, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+
+[node name="Line2D3" type="Line2D" parent="Floor/FloorMarks" unique_id=727432106]
+position = Vector2(500, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+
+[node name="Line2D4" type="Line2D" parent="Floor/FloorMarks" unique_id=1455078970]
+position = Vector2(1000, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+
+[node name="Line2D5" type="Line2D" parent="Floor/FloorMarks" unique_id=607291916]
+position = Vector2(-1000, 0)
+points = PackedVector2Array(0, 0, 0, 100)
+
 [node name="LWall" type="StaticBody2D" parent="." unique_id=1680589049]
 position = Vector2(-540, 0)
 

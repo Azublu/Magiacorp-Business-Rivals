@@ -6,9 +6,9 @@
 [node name="DashParticles" type="GPUParticles2D" unique_id=1932240088]
 emitting = false
 amount = 16
-lifetime = 0.2
+lifetime = 0.3
 one_shot = true
-explosiveness = 0.7
+explosiveness = 0.8
 process_material = ExtResource("1_ilep4")
 script = ExtResource("2_6sayi")
 

@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://bpewigcmin3e8"]
 
-[ext_resource type="Material" uid="uid://woeqgljipmuv" path="res://Shaders/player2_outline.tres" id="1_5lxp5"]
+[ext_resource type="Material" uid="uid://t3nxw44yj3j0" path="res://Materials/player2_outline.tres" id="1_88y4n"]
 [ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_hiii5"]
 [ext_resource type="PackedScene" uid="uid://djxq3j1lgbr54" path="res://Scenes/Characters/magical_girl.tscn" id="3_5lxp5"]
 
-[node name="Player2" type="CharacterBody2D" unique_id=793401195 node_paths=PackedStringArray("sprite")]
-material = ExtResource("1_5lxp5")
+[node name="Player2" type="CharacterBody2D" unique_id=793401195]
+material = ExtResource("1_88y4n")
 script = ExtResource("1_hiii5")
 player_index = 1
-sprite = NodePath("MagicalGirl/Sprite2D")
 
 [node name="MagicalGirl" parent="." unique_id=1785357862 instance=ExtResource("3_5lxp5")]
 
