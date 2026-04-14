@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://djxq3j1lgbr54"]
 
+[ext_resource type="Material" uid="uid://cdmjlsuhauqgf" path="res://Shaders/player1_outline.tres" id="1_8nndx"]
 [ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_fnb6x"]
 [ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_fnb6x"]
-[ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/HurtboxComponent.gd" id="3_bfuc1"]
-[ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/HitboxComponent.gd" id="4_t7iwb"]
+[ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_bfuc1"]
+[ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/Components/HitboxComponent.gd" id="4_t7iwb"]
+[ext_resource type="Script" uid="uid://bgac6oqtw4oih" path="res://Scripts/Components/HealthComponent.gd" id="5_t7iwb"]
+[ext_resource type="Texture2D" uid="uid://c1bead07innol" path="res://Sprites/ShieldSheet.png" id="6_nrcec"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnb6x"]
 radius = 13.0
@@ -289,7 +292,7 @@ advance_expression = "on_hit == false"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nxp51"]
 states/attack/node = SubResource("AnimationNodeAnimation_8nndx")
-states/attack/position = Vector2(588.4, 99.84)
+states/attack/position = Vector2(590.80005, 99.808)
 states/hurt/node = SubResource("AnimationNodeAnimation_fnb6x")
 states/hurt/position = Vector2(704, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_qis2q")
@@ -307,14 +310,53 @@ size = Vector2(30, 63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrcec"]
 size = Vector2(69, 68)
 
-[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "focus_regen_timer", "hurtbox", "hitbox")]
+[sub_resource type="Animation" id="Animation_nxp51"]
+resource_name = "PerfectBlock"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_rioco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0j3ab"]
+_data = {
+&"PerfectBlock": SubResource("Animation_nxp51"),
+&"RESET": SubResource("Animation_rioco")
+}
+
+[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component")]
+material = ExtResource("1_8nndx")
 script = ExtResource("1_fnb6x")
 sprite = NodePath("MagicalGirlCollider/Sprite2D")
 animation_tree = NodePath("MagicalGirlCollider/Sprite2D/AnimationTree")
 dash_timer = NodePath("Timers/DashTimer")
-focus_regen_timer = NodePath("Timers/FocusRegenTimer")
 hurtbox = NodePath("MagicalGirlCollider/Sprite2D/Hurtbox")
 hitbox = NodePath("MagicalGirlCollider/Sprite2D/Hitbox")
+health_component = NodePath("HealthComponent")
 
 [node name="MagicalGirlCollider" type="CollisionShape2D" parent="." unique_id=1785357862]
 use_parent_material = true
@@ -360,6 +402,16 @@ shape = SubResource("RectangleShape2D_nrcec")
 disabled = true
 debug_color = Color(0.9923771, 0, 0.25922605, 0.41960785)
 
+[node name="Shield" type="Sprite2D" parent="MagicalGirlCollider/Sprite2D" unique_id=1839383235]
+position = Vector2(-4, 3)
+texture = ExtResource("6_nrcec")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MagicalGirlCollider/Sprite2D/Shield" unique_id=1198701400]
+libraries/ = SubResource("AnimationLibrary_0j3ab")
+
 [node name="Timers" type="Node" parent="." unique_id=1233273172]
 
 [node name="DashTimer" type="Timer" parent="Timers" unique_id=1993355404]
@@ -367,3 +419,8 @@ one_shot = true
 
 [node name="FocusRegenTimer" type="Timer" parent="Timers" unique_id=1605204951]
 one_shot = true
+
+[node name="HealthComponent" type="Node" parent="." unique_id=2095988770 node_paths=PackedStringArray("focus_regen_timer")]
+script = ExtResource("5_t7iwb")
+focus_regen_timer = NodePath("../Timers/FocusRegenTimer")
+metadata/_custom_type_script = "uid://bgac6oqtw4oih"

@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 InputHandler="*uid://tqbs3k5ssdh2"
 EventHandler="*uid://b2ixn0usnjyc"
 ParticlesCache="uid://dpto3cc85pbur"
+GameManager="*uid://bjgmb87sc1bg2"
 
 [display]
 

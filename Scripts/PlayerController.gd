@@ -15,9 +15,9 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export var sprite : Sprite2D
 @export var animation_tree : AnimationTree
 @export var dash_timer : Timer
-@export var focus_regen_timer: Timer
 @export var hurtbox : Hurtbox
 @export var hitbox : Hitbox
+@export var health_component : HealthComponent
 
 @export_category("Character Stats")
 @export var default_speed : float = 400
@@ -30,20 +30,6 @@ const SLOW_FALL_GRAVITY := 1800.0
 
 @export_category("InGame Variables")
 @export var attacking : bool = false
-
-var max_health : int = 1000
-var max_focus : int = 100
-
-var health : int = 1000:
-	set(value):
-		health = value
-		update_health(health)
-		if health <= 0:
-			pass
-var focus : int = 100:
-	set(value):
-		focus = value
-		update_focus(focus)
 
 var input_velocity : Vector2 = Vector2.ZERO
 
@@ -74,6 +60,10 @@ func _ready() -> void:
 		hurtbox.player_index = player_index
 	if hitbox:
 		hitbox.player_index = player_index
+	if health_component:
+		health_component.player_index = player_index
+	else:
+		print("Missing health component")
 	
 
 #Update equivalent
@@ -87,16 +77,11 @@ func _process(_delta: float) -> void:
 		sprite.scale.x = 1.0
 		facing_left = true
 
-	if focus < max_focus and focus_regen_timer.is_stopped():
-		focus_regen_timer.start(0.2)
-		await focus_regen_timer.timeout
-		focus += 1
-
 #FixedUpdate equivalent
 func _physics_process(delta: float) -> void:
-	##NOTE: For demonstration purpose
-	if Input.is_action_just_pressed("ui_accept"):
-		attacking = true
+	###NOTE: For demonstration purpose
+	#if Input.is_action_just_pressed("ui_accept"):
+		#attacking = true
 	var floor_damping : float = 1.0 if is_on_floor() else 0.2
 	var horizontal_input := InputHandler.get_horizontal_input(player_index)
 	var dash_input := InputHandler.get_dash_input(player_index)
@@ -122,23 +107,7 @@ func _physics_process(delta: float) -> void:
 			knockback_timer = 0.0
 		if knockback_timer <= 0.0:
 			knockback = Vector2.ZERO
-		
-	
-	##NOTE: Old movement handler code
-	#if horizontal_input and not dashing:
-		#velocity.x = move_toward(velocity.x, horizontal_input * speed, ACCELERATION * delta)
-	#elif dashing:
-		#if horizontal_input > 0.1:
-			#velocity.x = 1 * dash_speed
-		#elif horizontal_input < -0.1:
-			#velocity.x = -1 * dash_speed
-		#else:
-			#if facing_left:
-				#velocity.x = -1 * dash_speed
-			#else:
-				#velocity.x = 1 * dash_speed
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
+
 	else:
 		on_hit = false
 	##NOTE: State Machine
@@ -216,10 +185,9 @@ func movement(horizontal_input, speed : float, floor_damping :float,delta : floa
 	else:
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 
+##NOTE: Recieve player damage info from 
 func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
 	if received_index == player_index : return
-	health -= damage
-	update_health(health)
 	apply_knockback(knockback_dir,knockback_force,knockback_dur)
 
 ##NOTE: Attempt to handle buffering jump inputs
@@ -266,14 +234,6 @@ func dash(dash_input) -> void:
 		await dash_timer.timeout
 		dashing = false
 		dash_timer.start(dash_cooldown)
-
-#Uses EventBus pattern to update UI in game
-func update_health(new_health : int) -> void:
-	EventHandler.player_health_changed.emit(new_health,player_index)
-
-#Uses EventBus pattern to update UI in game
-func update_focus(new_focus : int) -> void:
-	EventHandler.player_focus_changed.emit(new_focus,player_index)
 
 #Handles gravity to allow for player to fast fall
 func _get_gravity() -> float:
