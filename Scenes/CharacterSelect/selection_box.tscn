@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cdxk8528joo3"]
+
+[ext_resource type="Script" uid="uid://sqpw7v0t01xt" path="res://Scripts/SelectionBox.gd" id="1_23tpq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72d1u"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.16862746, 0.08235294, 1, 1)
+expand_margin_left = 16.0
+expand_margin_top = 4.0
+expand_margin_right = 16.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1kp4"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.7764706, 0, 0.14117648, 1)
+expand_margin_left = 12.0
+expand_margin_right = 12.0
+
+[node name="SelectionBox" type="Control" unique_id=1774006190]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_23tpq")
+
+[node name="Player1Select" type="Panel" parent="." unique_id=790398680]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 122.0
+offset_bottom = 122.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_72d1u")
+
+[node name="Player2Select" type="Panel" parent="." unique_id=520627291]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 122.0
+offset_bottom = 122.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d1kp4")

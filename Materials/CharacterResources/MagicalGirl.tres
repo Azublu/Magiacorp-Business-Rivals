@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://b3lh85iipvvfk"]
+
+[ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_y1jbe"]
+[ext_resource type="Texture2D" uid="uid://bg6kstbyi6v1u" path="res://Sprites/MagicalGirl.png" id="2_24etx"]
+
+[resource]
+script = ExtResource("1_y1jbe")
+name = "Stella"
+texture = ExtResource("2_24etx")
+metadata/_custom_type_script = "uid://c3t7287xkrp23"

@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cpip1gqk354wn" path="res://Sprites/Icons/MagicalGirlIcon.png" id="1_ey7ub"]
 [ext_resource type="Script" uid="uid://crsqvo1ympjr4" path="res://Scripts/InGameUI.gd" id="1_gtfj6"]
 [ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_gtfj6"]
+[ext_resource type="Theme" uid="uid://cpgfw238jmbmv" path="res://Materials/GameTheme.tres" id="4_t3gp5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4gx1"]
 skew = Vector2(0.25, 0)
@@ -14,12 +15,14 @@ expand_margin_left = 12.0
 expand_margin_right = 12.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwyif"]
+bg_color = Color(1, 1, 1, 1)
 draw_center = false
 skew = Vector2(0.25, 0)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
@@ -46,13 +49,14 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gtfj6"]
-bg_color = Color(0.81191546, 0.68462294, 0.25420445, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ia32e"]
+bg_color = Color(0.94509804, 0.7294118, 1, 1)
 skew = Vector2(0.25, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3gp5"]
@@ -62,6 +66,7 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -94,13 +99,14 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrcd"]
-bg_color = Color(0.8117647, 0.6862745, 0.25490198, 1)
+bg_color = Color(0.94509804, 0.7294118, 1, 1)
 skew = Vector2(-0.25, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpmi5"]
@@ -110,6 +116,7 @@ border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
@@ -135,6 +142,7 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
@@ -149,19 +157,19 @@ script = ExtResource("1_gtfj6")
 player1_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/HealthBar")
 player1_damaged_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/DamagedBar")
 player1_damaged_timer = NodePath("Timers/Player1DamagedTimer")
-player1_focus1 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
-player1_focus2 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player1_focus1 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
+player1_focus2 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
 player1_focus3 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
-player1_focus4 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
-player1_focus5 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
+player1_focus4 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player1_focus5 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
 player2_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/HealthBar")
 player2_damaged_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/DamagedBar")
 player2_damaged_timer = NodePath("Timers/Player2DamagedTimer")
-player2_focus1 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
-player2_focus2 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player2_focus1 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
+player2_focus2 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
 player2_focus3 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
-player2_focus4 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar4")
-player2_focus5 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar5")
+player2_focus4 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
+player2_focus5 = NodePath("Player2/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
 
 [node name="Player1" type="MarginContainer" parent="." unique_id=1496999140]
 layout_mode = 0
@@ -229,7 +237,7 @@ show_percentage = false
 custom_minimum_size = Vector2(690, 54)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_s8663")
-theme_override_styles/fill = SubResource("StyleBoxFlat_gtfj6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ia32e")
 max_value = 1000.0
 step = 1.0
 value = 1000.0
@@ -253,6 +261,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_orthm")
 max_value = 20.0
 step = 1.0
 value = 20.0
+allow_lesser = true
 show_percentage = false
 
 [node name="FocusBar2" type="ProgressBar" parent="Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer" unique_id=1305502629]
@@ -404,6 +413,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6ra50")
 max_value = 20.0
 step = 1.0
 value = 20.0
+allow_lesser = true
 fill_mode = 1
 show_percentage = false
 
@@ -445,3 +455,20 @@ one_shot = true
 
 [node name="Player2DamagedTimer" type="Timer" parent="Timers" unique_id=330788121]
 one_shot = true
+
+[node name="Winner Text" type="Label" parent="." unique_id=679243334]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_t3gp5")
+theme_override_font_sizes/font_size = 128
+text = "PLAYER 1 WINS"

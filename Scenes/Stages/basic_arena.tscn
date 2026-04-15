@@ -4,6 +4,9 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_flikx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxl11"]
+size = Vector2(300, 10)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_oxl11"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i41oj"]
@@ -40,6 +43,36 @@ points = PackedVector2Array(0, 0, 0, 100)
 [node name="Line2D5" type="Line2D" parent="Floor/FloorMarks" unique_id=607291916]
 position = Vector2(-1000, 0)
 points = PackedVector2Array(0, 0, 0, 100)
+
+[node name="Platform" type="Line2D" parent="Floor/FloorMarks" unique_id=1495536247]
+position = Vector2(0, -550)
+points = PackedVector2Array(-150, 0, 150, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor/FloorMarks/Platform" unique_id=1680074511]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/FloorMarks/Platform/StaticBody2D" unique_id=327088492]
+shape = SubResource("RectangleShape2D_oxl11")
+one_way_collision = true
+
+[node name="Platform2" type="Line2D" parent="Floor/FloorMarks" unique_id=1442687978]
+position = Vector2(-500, -275)
+points = PackedVector2Array(-150, 0, 150, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor/FloorMarks/Platform2" unique_id=1639950566]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/FloorMarks/Platform2/StaticBody2D" unique_id=636965399]
+shape = SubResource("RectangleShape2D_oxl11")
+one_way_collision = true
+
+[node name="Platform3" type="Line2D" parent="Floor/FloorMarks" unique_id=340600200]
+position = Vector2(500, -275)
+points = PackedVector2Array(-150, 0, 150, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Floor/FloorMarks/Platform3" unique_id=1711181351]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/FloorMarks/Platform3/StaticBody2D" unique_id=1890368267]
+shape = SubResource("RectangleShape2D_oxl11")
+one_way_collision = true
 
 [node name="LWall" type="StaticBody2D" parent="." unique_id=1680589049]
 position = Vector2(-540, 0)

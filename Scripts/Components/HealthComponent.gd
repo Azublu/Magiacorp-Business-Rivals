@@ -16,11 +16,12 @@ var health : int = 1000:
 			pass
 var focus : int = 100:
 	set(value):
-		focus = clamp(value,0,max_focus)
+		focus = clamp(value,-10,max_focus)
 		update_focus(focus)
 
 func _init() -> void:
 	EventHandler.player_hit.connect(player_hit)
+	EventHandler.player_blocked.connect(player_blocked)
 
 func _process(_delta: float) -> void:
 	
@@ -32,7 +33,10 @@ func _process(_delta: float) -> void:
 func player_hit(damage : int ,_knockback_dir : Vector2 ,_knockback_force : float,_knockback_dur,received_index : int) -> void:
 	if received_index == player_index : return
 	health -= damage
-	update_health(health)
+
+func player_blocked(recieved_index) -> void:
+	if recieved_index == player_index:
+		focus -= 20
 
 #Uses EventBus pattern to update UI in game
 func update_health(new_health : int) -> void:

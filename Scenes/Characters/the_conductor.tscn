@@ -1,16 +1,15 @@
-[gd_scene format=3 uid="uid://djxq3j1lgbr54"]
+[gd_scene format=3 uid="uid://c6uoskmqpy0wo"]
 
-[ext_resource type="Material" uid="uid://cdmjlsuhauqgf" path="res://Shaders/player1_outline.tres" id="1_8nndx"]
-[ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_fnb6x"]
-[ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_fnb6x"]
-[ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_bfuc1"]
-[ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/Components/HitboxComponent.gd" id="4_t7iwb"]
-[ext_resource type="Script" uid="uid://bgac6oqtw4oih" path="res://Scripts/Components/HealthComponent.gd" id="5_t7iwb"]
-[ext_resource type="Texture2D" uid="uid://c1bead07innol" path="res://Sprites/ShieldSheet.png" id="6_nrcec"]
+[ext_resource type="Material" uid="uid://woeqgljipmuv" path="res://Shaders/player2_outline.tres" id="1_agxm5"]
+[ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_cxqc5"]
+[ext_resource type="Texture2D" uid="uid://cia5cijmyxq86" path="res://Sprites/TheConductor/TrainConductor.png" id="2_8eqr7"]
+[ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_agxm5"]
+[ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/Components/HitboxComponent.gd" id="4_454pr"]
+[ext_resource type="Texture2D" uid="uid://c1bead07innol" path="res://Sprites/ShieldSheet.png" id="5_xsoet"]
+[ext_resource type="Script" uid="uid://bgac6oqtw4oih" path="res://Scripts/Components/HealthComponent.gd" id="6_8eqr7"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnb6x"]
-radius = 13.0
-height = 56.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2t261"]
+height = 70.0
 
 [sub_resource type="Animation" id="Animation_qis2q"]
 length = 0.001
@@ -202,7 +201,7 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_nxp51"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_li7sn"]
 _data = {
 &"RESET": SubResource("Animation_qis2q"),
 &"attack": SubResource("Animation_fnb6x"),
@@ -290,7 +289,7 @@ advance_expression = "on_hit == true"
 advance_mode = 2
 advance_expression = "on_hit == false"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nxp51"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_06ncw"]
 states/attack/node = SubResource("AnimationNodeAnimation_8nndx")
 states/attack/position = Vector2(627.80005, 28.807999)
 states/hurt/node = SubResource("AnimationNodeAnimation_fnb6x")
@@ -304,11 +303,11 @@ states/run/position = Vector2(447.768, 208)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8nndx"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_fnb6x"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qis2q"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bfuc1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_t7iwb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_nrcec"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_nxp51"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rioco"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_0j3ab"), "jump", "attack", SubResource("AnimationNodeStateMachineTransition_yyivp"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_s2r8k"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_e0ad0"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_ygw08"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_88lhi"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_ejsvn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_q6a2x")]
 graph_offset = Vector2(73.310265, 0)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nndx"]
-size = Vector2(30, 63)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm0ep"]
+size = Vector2(38, 72)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrcec"]
-size = Vector2(69, 54)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t508t"]
+size = Vector2(84, 101)
 
 [sub_resource type="Animation" id="Animation_nxp51"]
 resource_name = "PerfectBlock"
@@ -342,88 +341,92 @@ tracks/0/keys = {
 "values": [1]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0j3ab"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wecrb"]
 _data = {
 &"PerfectBlock": SubResource("Animation_nxp51"),
 &"RESET": SubResource("Animation_rioco")
 }
 
-[node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component", "shield")]
-material = ExtResource("1_8nndx")
-script = ExtResource("1_fnb6x")
-sprite = NodePath("MagicalGirlCollider/Sprite2D")
-animation_tree = NodePath("MagicalGirlCollider/Sprite2D/AnimationTree")
+[node name="TheConductor" type="CharacterBody2D" unique_id=166882256 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component", "shield")]
+material = ExtResource("1_agxm5")
+script = ExtResource("1_cxqc5")
+sprite = NodePath("ConductorCollider/Sprite2D")
+animation_tree = NodePath("ConductorCollider/Sprite2D/AnimationTree")
 dash_timer = NodePath("Timers/DashTimer")
-hurtbox = NodePath("MagicalGirlCollider/Sprite2D/Hurtbox")
-hitbox = NodePath("MagicalGirlCollider/Sprite2D/Hitbox")
+hurtbox = NodePath("ConductorCollider/Sprite2D/Hurtbox")
+hitbox = NodePath("ConductorCollider/Sprite2D/Hitbox")
 health_component = NodePath("HealthComponent")
-shield = NodePath("MagicalGirlCollider/Sprite2D/Shield")
+shield = NodePath("ConductorCollider/Sprite2D/Shield")
+default_speed = 300.0
+dash_speed = 900.0
+jump_velocity = -900.0
+dash_cooldown = 0.5
+dash_duration = 0.5
 
-[node name="MagicalGirlCollider" type="CollisionShape2D" parent="." unique_id=1785357862]
+[node name="ConductorCollider" type="CollisionShape2D" parent="." unique_id=1072209707]
 use_parent_material = true
-shape = SubResource("CapsuleShape2D_fnb6x")
+shape = SubResource("CapsuleShape2D_2t261")
 
-[node name="Sprite2D" type="Sprite2D" parent="MagicalGirlCollider" unique_id=1974693388]
+[node name="Sprite2D" type="Sprite2D" parent="ConductorCollider" unique_id=1762722015]
 use_parent_material = true
-position = Vector2(0, -8)
-texture = ExtResource("2_fnb6x")
-offset = Vector2(-25, 0)
+texture = ExtResource("2_8eqr7")
+offset = Vector2(-20, -15)
 hframes = 3
 vframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MagicalGirlCollider/Sprite2D" unique_id=1190802629]
-libraries/ = SubResource("AnimationLibrary_nxp51")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ConductorCollider/Sprite2D" unique_id=1564311733]
+libraries/ = SubResource("AnimationLibrary_li7sn")
 
-[node name="AnimationTree" type="AnimationTree" parent="MagicalGirlCollider/Sprite2D" unique_id=1311672770]
-tree_root = SubResource("AnimationNodeStateMachine_nxp51")
+[node name="AnimationTree" type="AnimationTree" parent="ConductorCollider/Sprite2D" unique_id=1203314303]
+tree_root = SubResource("AnimationNodeStateMachine_06ncw")
 advance_expression_base_node = NodePath("../../..")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="Hurtbox" type="Area2D" parent="MagicalGirlCollider/Sprite2D" unique_id=900637849]
+[node name="Hurtbox" type="Area2D" parent="ConductorCollider/Sprite2D" unique_id=1690218373]
 position = Vector2(0, 8)
-script = ExtResource("3_bfuc1")
+script = ExtResource("3_agxm5")
 metadata/_custom_type_script = "uid://bkg5myu3ltrhb"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MagicalGirlCollider/Sprite2D/Hurtbox" unique_id=2098380183]
-position = Vector2(0, -5.5)
-shape = SubResource("RectangleShape2D_8nndx")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConductorCollider/Sprite2D/Hurtbox" unique_id=174408393]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_pm0ep")
 debug_color = Color(4.307702e-06, 0.64908695, 0.1690875, 0.41960785)
 
-[node name="Hitbox" type="Area2D" parent="MagicalGirlCollider/Sprite2D" unique_id=1739750673]
+[node name="Hitbox" type="Area2D" parent="ConductorCollider/Sprite2D" unique_id=1442806848]
 position = Vector2(0, 8)
-script = ExtResource("4_t7iwb")
-damage = 100.0
-knockback = 1000.0
+script = ExtResource("4_454pr")
+damage = 90.0
+knockback = 1500.0
 knockback_dur = 0.1
 metadata/_custom_type_script = "uid://uondwb2w4yxs"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MagicalGirlCollider/Sprite2D/Hitbox" unique_id=1684706315]
-position = Vector2(-52.5, -3)
-shape = SubResource("RectangleShape2D_nrcec")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ConductorCollider/Sprite2D/Hitbox" unique_id=631689119]
+position = Vector2(-60, -26.5)
+shape = SubResource("RectangleShape2D_t508t")
 disabled = true
 debug_color = Color(0.9923771, 0, 0.25922605, 0.41960785)
 
-[node name="Shield" type="Sprite2D" parent="MagicalGirlCollider/Sprite2D" unique_id=1839383235]
+[node name="Shield" type="Sprite2D" parent="ConductorCollider/Sprite2D" unique_id=1854997493]
 visible = false
 position = Vector2(-4, 3)
-texture = ExtResource("6_nrcec")
+texture = ExtResource("5_xsoet")
 hframes = 3
 vframes = 3
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MagicalGirlCollider/Sprite2D/Shield" unique_id=1198701400]
-libraries/ = SubResource("AnimationLibrary_0j3ab")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ConductorCollider/Sprite2D/Shield" unique_id=48436229]
+libraries/ = SubResource("AnimationLibrary_wecrb")
 autoplay = &"PerfectBlock"
 
-[node name="Timers" type="Node" parent="." unique_id=1233273172]
+[node name="Timers" type="Node" parent="." unique_id=1549134537]
 
-[node name="DashTimer" type="Timer" parent="Timers" unique_id=1993355404]
+[node name="DashTimer" type="Timer" parent="Timers" unique_id=245978001]
 one_shot = true
 
-[node name="FocusRegenTimer" type="Timer" parent="Timers" unique_id=1605204951]
+[node name="FocusRegenTimer" type="Timer" parent="Timers" unique_id=1537403162]
 one_shot = true
 
-[node name="HealthComponent" type="Node" parent="." unique_id=2095988770 node_paths=PackedStringArray("focus_regen_timer")]
-script = ExtResource("5_t7iwb")
+[node name="HealthComponent" type="Node" parent="." unique_id=106966826 node_paths=PackedStringArray("focus_regen_timer")]
+script = ExtResource("6_8eqr7")
 focus_regen_timer = NodePath("../Timers/FocusRegenTimer")
 metadata/_custom_type_script = "uid://bgac6oqtw4oih"

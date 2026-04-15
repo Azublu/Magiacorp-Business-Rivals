@@ -10,6 +10,7 @@ extends Node
 signal player_health_changed(current_health,player_index)
 signal player_focus_changed(current_focus, player_index)
 signal player_hit(damage,knockback_dir,knockback_force,knockback_dur,player_index)
+signal player_blocked(player_index)
 
 ##NOTE: Attempt to translate Unity EventHandler into Godot
 #static var event_dictionary : Dictionary[String,Array]

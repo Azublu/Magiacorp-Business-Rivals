@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://gxdj54sbrj1x"]
+
+[ext_resource type="Theme" uid="uid://cpgfw238jmbmv" path="res://Materials/GameTheme.tres" id="1_klylv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klylv"]
+bg_color = Color(0.94509804, 0.7294118, 1, 1)
+skew = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3fck"]
+bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+skew = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gxqj"]
+bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+skew = Vector2(0.5, 0)
+
+[node name="TitleScreen" type="Control" unique_id=1135888152]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=224987126]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=720854298]
+layout_mode = 2
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_bottom = 64
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer" unique_id=1525255450]
+layout_mode = 2
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 128
+text = "MAGIACORP:
+BUSINESS RIVALS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Versus" type="Button" parent="VBoxContainer" unique_id=1780144684]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "VERSUS"
+
+[node name="Training" type="Button" parent="VBoxContainer" unique_id=1184578789]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "TRAINING"
+
+[node name="Settings" type="Button" parent="VBoxContainer" unique_id=2057263539]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "SETTINGS"
+
+[node name="Credits" type="Button" parent="VBoxContainer" unique_id=1496669915]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "CREDITS"
+
+[node name="Panel" type="Panel" parent="." unique_id=750222694]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -579.0
+offset_right = 280.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_klylv")
+
+[node name="Panel2" type="Panel" parent="." unique_id=148976334]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -579.0
+offset_right = -113.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_klylv")
+
+[node name="Panel3" type="Panel" parent="." unique_id=1669546323]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -2193.0
+offset_top = -579.0
+offset_right = -1846.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_p3fck")
+
+[node name="Panel4" type="Panel" parent="." unique_id=249919444]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1789.0
+offset_top = -579.0
+offset_right = -1762.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4gxqj")

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cah5kd3rkfk0v" path="res://Scenes/Stages/basic_arena.tscn" id="3_0e3vx"]
 [ext_resource type="Material" uid="uid://mlhmxd6xip26" path="res://Materials/player1_outline.tres" id="3_mgc0q"]
 [ext_resource type="PackedScene" uid="uid://k30ll3piiyhw" path="res://Scenes/in_game_ui.tscn" id="4_6j5ir"]
-[ext_resource type="Material" uid="uid://woeqgljipmuv" path="res://Shaders/player2_outline.tres" id="4_bb2iq"]
+[ext_resource type="PackedScene" uid="uid://c6uoskmqpy0wo" path="res://Scenes/Characters/the_conductor.tscn" id="4_mgc0q"]
 
 [node name="MainGame" type="Node2D" unique_id=1176348593]
 
@@ -27,18 +27,16 @@ render_target_update_mode = 4
 
 [node name="BasicArena" parent="Game/SubViewportContainer/SubViewport" unique_id=461245866 instance=ExtResource("3_0e3vx")]
 
-[node name="Camera2D" parent="Game/SubViewportContainer/SubViewport/BasicArena" index="3" unique_id=1753058332 node_paths=PackedStringArray("player1", "player2")]
+[node name="Camera2D" parent="Game/SubViewportContainer/SubViewport/BasicArena" index="3" unique_id=1753058332 node_paths=PackedStringArray("player1")]
 player1 = NodePath("../../MagicalGirl")
-player2 = NodePath("../../MagicalGirl2")
 margin = Vector2(500, 500)
 
 [node name="MagicalGirl" parent="Game/SubViewportContainer/SubViewport" unique_id=502907146 instance=ExtResource("2_pu3va")]
 material = ExtResource("3_mgc0q")
-position = Vector2(221, 347)
+position = Vector2(244.5, 338)
 
-[node name="MagicalGirl2" parent="Game/SubViewportContainer/SubViewport" unique_id=1117515306 instance=ExtResource("2_pu3va")]
-material = ExtResource("4_bb2iq")
-position = Vector2(752, 344.5)
+[node name="TheConductor" parent="Game/SubViewportContainer/SubViewport" unique_id=166882256 instance=ExtResource("4_mgc0q")]
+position = Vector2(730, 338)
 player_index = 1
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1263404823]

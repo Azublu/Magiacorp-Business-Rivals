@@ -1,0 +1,45 @@
+[gd_resource type="Theme" format=3 uid="uid://cpgfw238jmbmv"]
+
+[ext_resource type="FontFile" uid="uid://vpcjay16fml8" path="res://Sprites/Fonts/BoldPixels.ttf" id="1_6s3o7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6s3o7"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.94509804, 0.7294118, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr8yy"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vlwl"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.94509804, 0.7294118, 1, 1)
+Button/colors/font_pressed_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_6s3o7")
+Button/styles/focus = SubResource("StyleBoxFlat_6s3o7")
+Button/styles/hover = SubResource("StyleBoxFlat_6s3o7")
+Button/styles/normal = SubResource("StyleBoxFlat_yr8yy")
+Button/styles/pressed = SubResource("StyleBoxFlat_6vlwl")
+Label/colors/font_outline_color = Color(0.94509804, 0.7294118, 1, 1)
+Label/constants/outline_size = 32
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_6s3o7")

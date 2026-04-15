@@ -19,8 +19,11 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	#NOTE to self - Look into GODOT collision layers later, may be more efficient
 
 	if shielding:
-		var knockback_dir = -(hitbox.owner.global_position - global_position).normalized()
-		EventHandler.player_hit.emit(0,knockback_dir,hitbox.knockback,hitbox.knockback_dur,player_index)
+		var knockback_dir = (hitbox.owner.global_position - global_position).normalized()
+		##NOTE: Using player hit signal to bounce attacking player back
+		EventHandler.player_hit.emit(0,knockback_dir,1000,hitbox.knockback_dur,player_index)
+		EventHandler.player_hit.emit(0,-knockback_dir,hitbox.knockback/2,hitbox.knockback_dur,hitbox.player_index)
+		EventHandler.player_blocked.emit(player_index)
 		return
 
 	#This nested if statement decides what happens when a hit is detected

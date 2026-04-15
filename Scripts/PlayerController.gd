@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const DASH_PARTICLES = preload("uid://vhwsu32nmgvh")
 
@@ -24,6 +25,7 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export var default_speed : float = 400
 @export var dash_speed : float = 1000
 @export var attack_speed : float = 200
+@export var block_speed : float = 100
 @export var jump_velocity : float = -1000
 @export var max_jumps : int = 2
 @export var dash_cooldown : float = 0.25
@@ -32,6 +34,7 @@ const SLOW_FALL_GRAVITY := 1800.0
 @export_category("InGame Variables")
 @export var attacking : bool = false
 @export var blocking : bool = false
+@export var dead : bool = false
 
 var input_velocity : Vector2 = Vector2.ZERO
 
@@ -39,6 +42,7 @@ var facing_left : bool = true
 var can_move : bool = true
 var dashing : bool = false
 var on_hit : bool = false
+var on_block : bool = false
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
@@ -59,6 +63,11 @@ func _init() -> void:
 
 ##NOTE: Start equivalent
 func _ready() -> void:
+	match player_index:
+		0:
+			GameManager.player1 = self
+		1:
+			GameManager.player2 = self
 	available_jumps = max_jumps
 	if hurtbox:
 		hurtbox.player_index = player_index
@@ -73,18 +82,26 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if velocity.x > 5 and facing_left:
 		if on_hit: return
+		if on_block: return
 		sprite.scale.x = -1.0
 		facing_left = false
 	elif velocity.x < -5 and not facing_left:
 		if on_hit: return
+		if on_block: return
 		sprite.scale.x = 1.0
 		facing_left = true
 
 ##NOTE: FixedUpdate equivalent
 func _physics_process(delta: float) -> void:
-	###NOTE: Following if statement is for demonstration and testing purpose
-	#if Input.is_action_just_pressed("ui_accept"):
-		#attacking = true
+	
+	if not is_on_floor():
+		velocity.y += _get_gravity() * delta
+	else:
+		available_jumps = max_jumps
+	
+	##NOTE move this in the future when refining the player defeated state
+	if dead: return ##TODO: Add dead animation
+
 	var floor_damping : float = 1.0 if is_on_floor() else 0.2
 	var horizontal_input := InputHandler.get_horizontal_input(player_index)
 	var dash_input := InputHandler.get_dash_input(player_index)
@@ -93,16 +110,11 @@ func _physics_process(delta: float) -> void:
 	
 	input_velocity = Vector2.ZERO
 	
-	if not is_on_floor():
-		velocity.y += _get_gravity() * delta
-	else:
-		available_jumps = max_jumps
-	
 	dash(dash_input)
 	jump()
 	
 	if knockback_timer > 0.0:
-		on_hit = true 
+		if not on_block: on_hit = true 
 		##NOTE: Can increase this for stronger vertical launch on knockback
 		velocity.y = -100
 		if knockback != Vector2.ZERO:
@@ -113,9 +125,15 @@ func _physics_process(delta: float) -> void:
 			knockback_timer = 0.0
 		if knockback_timer <= 0.0:
 			knockback = Vector2.ZERO
-
+			await get_tree().create_timer(0.25).timeout
+			on_hit = false
+			on_block = false
 	else:
-		on_hit = false
+
+		##NOTE: Prevent blocking under 0 focus
+		if health_component.focus <= 0 : 
+			block_input = false
+			hurtbox.shielding = false
 	##NOTE: State Machine
 		match state:
 			States.GROUNDED:
@@ -161,7 +179,10 @@ func _physics_process(delta: float) -> void:
 				elif not attacking:
 					state = States.AIRBORNE
 			States.BLOCKING:
-				velocity.x = movement(horizontal_input,0,floor_damping,delta)
+				if is_on_floor():
+					velocity.x = movement(horizontal_input,0,floor_damping,delta)
+				else:
+					velocity.x = movement(horizontal_input,default_speed,floor_damping,delta)
 				if dashing:
 					state = States.DASHING
 				if not block_input and is_on_floor():
@@ -184,6 +205,7 @@ func set_state(new_state: States) -> void:
 		States.BLOCKING:
 			blocking = true
 			shield.visible = true
+			hurtbox.shielding = true
 
 	match previous_state:
 		States.DASHING:
@@ -191,6 +213,7 @@ func set_state(new_state: States) -> void:
 		States.BLOCKING:
 			blocking = false
 			shield.visible = false
+			hurtbox.shielding = false
 
 ##NOTE: Handles movement logic
 func movement(horizontal_input, speed : float, floor_damping :float,delta : float) -> float:
@@ -200,8 +223,9 @@ func movement(horizontal_input, speed : float, floor_damping :float,delta : floa
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 
 ##NOTE: Recieve player damage info from EventBus
-func player_hit(_damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
+func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
 	if received_index == player_index : return
+	if damage == 0 : on_block = true
 	apply_knockback(knockback_dir,knockback_force,knockback_dur)
 
 ##NOTE: Attempt to handle buffering jump inputs
