@@ -8,10 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="5_adfxp"]
 [ext_resource type="Texture2D" uid="uid://hcea05yop87" path="res://Sprites/Icons/TheConductorIcon.png" id="6_5g387"]
 [ext_resource type="PackedScene" uid="uid://cdxk8528joo3" path="res://Scenes/CharacterSelect/selection_box.tscn" id="6_wmu6h"]
+[ext_resource type="Material" uid="uid://cdmjlsuhauqgf" path="res://Shaders/player1_outline.tres" id="7_ol1mk"]
 [ext_resource type="Resource" uid="uid://b3lh85iipvvfk" path="res://Materials/CharacterResources/MagicalGirl.tres" id="9_elf14"]
 [ext_resource type="Resource" uid="uid://cprox0rbl2tkx" path="res://Materials/CharacterResources/Tharacia.tres" id="10_5g387"]
 [ext_resource type="Resource" uid="uid://c0dumlmwkquhm" path="res://Materials/CharacterResources/Empty.tres" id="10_ol1mk"]
 [ext_resource type="Resource" uid="uid://bwkckcc7sgjh2" path="res://Materials/CharacterResources/TheConductor.tres" id="11_vvcjl"]
+[ext_resource type="Material" uid="uid://woeqgljipmuv" path="res://Shaders/player2_outline.tres" id="14_vvcjl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g387"]
 bg_color = Color(0.94509804, 0.7294118, 1, 1)
@@ -539,6 +541,7 @@ alignment = 1
 
 [node name="Player1Character" type="TextureRect" parent="HBoxContainer2" unique_id=1407912666]
 unique_name_in_owner = true
+material = ExtResource("7_ol1mk")
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 texture = SubResource("AtlasTexture_5g387")
@@ -620,6 +623,7 @@ character = ExtResource("10_ol1mk")
 
 [node name="Player2Character" type="TextureRect" parent="HBoxContainer2" unique_id=175833980]
 unique_name_in_owner = true
+material = ExtResource("14_vvcjl")
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
 
