@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://b3lh85iipvvfk"]
 
 [ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_y1jbe"]
-[ext_resource type="Texture2D" uid="uid://bg6kstbyi6v1u" path="res://Sprites/MagicalGirl.png" id="2_24etx"]
+[ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_24etx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pneff"]
+atlas = ExtResource("2_24etx")
+region = Rect2(20.100021, -19.999992, 128, 128.79999)
 
 [resource]
 script = ExtResource("1_y1jbe")
 name = "Stella"
-texture = ExtResource("2_24etx")
+texture = SubResource("AtlasTexture_pneff")
 metadata/_custom_type_script = "uid://c3t7287xkrp23"

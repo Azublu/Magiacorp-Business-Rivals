@@ -30,13 +30,14 @@ func _process(_delta: float) -> void:
 		await focus_regen_timer.timeout
 		focus += 1
 
-func player_hit(damage : int ,_knockback_dir : Vector2 ,_knockback_force : float,_knockback_dur,received_index : int) -> void:
+func player_hit(damage : int ,_knockback_dir : Vector2 ,_knockback_force : float,_knockback_dur,received_index : int,hit_player_index) -> void:
 	if received_index == player_index : return
-	health -= damage
+	if hit_player_index == player_index:
+		health -= damage
 
-func player_blocked(recieved_index) -> void:
+func player_blocked(blocked_damage, recieved_index) -> void:
 	if recieved_index == player_index:
-		focus -= 20
+		focus -= blocked_damage/10
 
 #Uses EventBus pattern to update UI in game
 func update_health(new_health : int) -> void:

@@ -260,7 +260,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_4gxqj")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1590447050]
-position = Vector2(960, -540)
+position = Vector2(960, 540)
 position_smoothing_enabled = true
 
 [connection signal="pressed" from="VBoxContainer/Versus" to="." method="_on_versus_pressed"]

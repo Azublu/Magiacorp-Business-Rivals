@@ -33,10 +33,10 @@ margin = Vector2(500, 500)
 
 [node name="MagicalGirl" parent="Game/SubViewportContainer/SubViewport" unique_id=502907146 instance=ExtResource("2_pu3va")]
 material = ExtResource("3_mgc0q")
-position = Vector2(244.5, 338)
+position = Vector2(49, 132.5)
 
 [node name="TheConductor" parent="Game/SubViewportContainer/SubViewport" unique_id=166882256 instance=ExtResource("4_mgc0q")]
-position = Vector2(730, 338)
+position = Vector2(908.5, 118)
 player_index = 1
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=1263404823]

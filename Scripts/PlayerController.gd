@@ -46,6 +46,7 @@ var on_block : bool = false
 
 var knockback: Vector2 = Vector2.ZERO
 var knockback_timer: float = 0.0
+var knockback_force : float
 
 var jump_input : bool
 var jump_pressed : bool
@@ -117,6 +118,8 @@ func _physics_process(delta: float) -> void:
 		if not on_block: on_hit = true 
 		##NOTE: Can increase this for stronger vertical launch on knockback
 		velocity.y = -100
+		if knockback_force > 1000:
+			velocity.y = -500
 		if knockback != Vector2.ZERO:
 			velocity.x = knockback.x
 			#velocity.y = -(abs(knockback.y) * 100)
@@ -223,10 +226,11 @@ func movement(horizontal_input, speed : float, floor_damping :float,delta : floa
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 
 ##NOTE: Recieve player damage info from EventBus
-func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int) -> void:
+func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int, hit_player_index : int) -> void:
 	if received_index == player_index : return
-	if damage == 0 : on_block = true
-	apply_knockback(knockback_dir,knockback_force,knockback_dur)
+	if hit_player_index == player_index:
+		if damage == 0 : on_block = true
+		apply_knockback(knockback_dir,knockback_force,knockback_dur)
 
 ##NOTE: Attempt to handle buffering jump inputs
 func jump() -> void:
@@ -285,4 +289,5 @@ func _get_gravity() -> float:
 ##NOTE: Applies a set amount of knockback that is controlled within Physics Process
 func apply_knockback(direction: Vector2, force: float, knockback_dur: float) -> void:
 	knockback = direction * force
+	knockback_force = force
 	knockback_timer = knockback_dur

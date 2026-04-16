@@ -8,6 +8,7 @@ extends Control
 @onready var player_2_label: Label = %Player2Label
 @onready var player_1_ready: Label = %Player1Ready
 @onready var player_2_ready: Label = %Player2Ready
+@onready var camera_2d: Camera2D = $Camera2D
 
 var player1SelectionIndex : int = 0
 var player2SelectionIndex : int = 0
@@ -17,6 +18,9 @@ var player2Character : CharacterResource
 
 func _ready() -> void:
 	_refresh_selection()
+	var tween = create_tween()
+	tween.tween_property(camera_2d, "position", Vector2(960,540),0.15)
+
 	
 func _refresh_selection() -> void:
 	for child in grid_container.get_children():
@@ -45,6 +49,9 @@ func _input(event: InputEvent) -> void:
 	if abs(P1yAxis) >= 1.0:
 		player1Direction.y = roundi(P1yAxis)
 	
+	if not player1Direction:
+		player1Direction = Input.get_vector("p1_left","p1_right","p1_up","p1_down")
+	
 	var player2Direction : Vector2i
 	
 	var P2xAxis = Input.get_joy_axis(1,JOY_AXIS_LEFT_X)
@@ -53,6 +60,10 @@ func _input(event: InputEvent) -> void:
 	var P2yAxis = Input.get_joy_axis(1,JOY_AXIS_LEFT_Y)
 	if abs(P2yAxis) >= 1.0:
 		player2Direction.y = roundi(P2yAxis)
+	
+	if not player2Direction:
+		player2Direction = Input.get_vector("p2_left","p2_right","p2_up","p2_down")
+	
 	
 	if not player1Character:
 		player1SelectionIndex = _get_selection_index(player1SelectionIndex,player1Direction)
@@ -99,3 +110,12 @@ func _check_selection_done():
 	if player1Character and player2SelectionIndex:
 		pass
 		##TODO: Save seleciton in global script and change scenes
+
+
+func _on_back_pressed() -> void:
+	var tween = create_tween()
+	tween.tween_property(camera_2d, "position", Vector2(960,1620),0.15)
+	tween.tween_callback(change_scene).set_delay(0.2)
+
+func change_scene() -> void:
+	GameManager.change_scene("TITLE")

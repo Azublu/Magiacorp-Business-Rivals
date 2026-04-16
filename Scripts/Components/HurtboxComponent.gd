@@ -23,14 +23,16 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 		##NOTE: Using player hit signal to bounce attacking player back
 		EventHandler.player_hit.emit(0,knockback_dir,1000,hitbox.knockback_dur,player_index)
 		EventHandler.player_hit.emit(0,-knockback_dir,hitbox.knockback/2,hitbox.knockback_dur,hitbox.player_index)
-		EventHandler.player_blocked.emit(player_index)
+		EventHandler.player_blocked.emit(hitbox.damage,player_index)
 		return
 
 	#This nested if statement decides what happens when a hit is detected
 	if hitbox.name == "Hitbox":
 		#Some scuffed math for a knockback on hit effect
 		var knockback_dir = -(hitbox.owner.global_position - global_position).normalized()
-		EventHandler.player_hit.emit(hitbox.damage,knockback_dir,hitbox.knockback,hitbox.knockback_dur,hitbox.player_index)
+		EventHandler.player_hit.emit(hitbox.damage,knockback_dir,hitbox.knockback,hitbox.knockback_dur,hitbox.player_index,player_index)
+		print("hitbox hit ",hitbox.player_index)
+		print("hurtbox index ", player_index)
 		
 		##Deletes the node the colliding hitbox is attatched to if it has an on_hit function/method
 		#if hitbox.owner.has_method("on_hit"):

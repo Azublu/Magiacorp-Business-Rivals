@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cah5kd3rkfk0v"]
 
+[ext_resource type="PackedScene" uid="uid://cyfpvlrvlg8uv" path="res://Scenes/Stages/StageHazard/train.tscn" id="1_i41oj"]
 [ext_resource type="Script" uid="uid://5f7xpenho50c" path="res://Scripts/StageCamera.gd" id="1_oxl11"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_flikx"]
@@ -14,9 +15,11 @@ size = Vector2(300, 10)
 [node name="BasicArena" type="Node2D" unique_id=461245866]
 
 [node name="Floor" type="Line2D" parent="." unique_id=912856010]
-points = PackedVector2Array(-540, 500, 1500, 500)
+points = PackedVector2Array(-1080, 500, 2040, 500)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Floor" unique_id=1232564937]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D" unique_id=173655481]
 position = Vector2(478, 497)
@@ -73,6 +76,21 @@ points = PackedVector2Array(-150, 0, 150, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/FloorMarks/Platform3/StaticBody2D" unique_id=1890368267]
 shape = SubResource("RectangleShape2D_oxl11")
 one_way_collision = true
+
+[node name="LSpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=371517386]
+position = Vector2(3000, -100)
+
+[node name="RSpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=1399516155]
+position = Vector2(-3000, -100)
+
+[node name="USpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=218354755]
+position = Vector2(0, -2000)
+
+[node name="Train" parent="Floor" unique_id=1958846054 node_paths=PackedStringArray("left_spawn_marker", "right_spawn_marker", "up_spawn_marker") instance=ExtResource("1_i41oj")]
+position = Vector2(-2089, -249)
+left_spawn_marker = NodePath("../FloorMarks/LSpawnMarker")
+right_spawn_marker = NodePath("../FloorMarks/RSpawnMarker")
+up_spawn_marker = NodePath("../FloorMarks/USpawnMarker")
 
 [node name="LWall" type="StaticBody2D" parent="." unique_id=1680589049]
 position = Vector2(-540, 0)

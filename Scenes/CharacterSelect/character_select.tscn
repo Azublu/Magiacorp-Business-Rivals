@@ -17,7 +17,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g387"]
 bg_color = Color(0.94509804, 0.7294118, 1, 1)
-skew = Vector2(0.5, 0)
+skew = Vector2(-0.5, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elf14"]
 bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
@@ -206,6 +206,7 @@ theme_override_constants/margin_right = 150
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_qwmle")
+theme_override_colors/font_outline_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 2"
 horizontal_alignment = 2
@@ -646,3 +647,32 @@ theme_override_colors/font_outline_color = Color(0.7764706, 0, 0.14117648, 1)
 theme_override_font_sizes/font_size = 64
 text = "READY!"
 horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=405353305]
+position = Vector2(960, 1620)
+position_smoothing_enabled = true
+
+[node name="Back" type="Button" parent="." unique_id=233748226]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -186.0
+offset_right = 250.0
+offset_bottom = -112.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Training")
+focus_neighbor_bottom = NodePath("../Credits")
+focus_next = NodePath("../Training")
+theme = ExtResource("1_qwmle")
+theme_override_font_sizes/font_size = 64
+text = "BACK"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
