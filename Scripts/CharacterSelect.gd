@@ -72,7 +72,11 @@ func _input(event: InputEvent) -> void:
 		player2SelectionIndex = _get_selection_index(player2SelectionIndex,player2Direction)
 	
 	_refresh_selection()
-	
+
+	if ((Input.is_joy_button_pressed(0,JOY_BUTTON_B) or Input.is_joy_button_pressed(1,JOY_BUTTON_B)) 
+	and (player1Character == null and player2Character == null)):
+		_on_back_pressed()
+
 	if Input.is_joy_button_pressed(0,JOY_BUTTON_B):
 		player1Character = null
 		player_1_ready.hide()
@@ -80,13 +84,14 @@ func _input(event: InputEvent) -> void:
 		player2Character = null
 		player_2_ready.hide()
 	
-	if Input.is_joy_button_pressed(0,JOY_BUTTON_A):
+	if Input.is_joy_button_pressed(0,JOY_BUTTON_A) or Input.is_action_pressed("p1_accept"):
 		player1Character = grid_container.get_child(player1SelectionIndex).get_character()
 		player_1_ready.show()
-	if Input.is_joy_button_pressed(1,JOY_BUTTON_A):
+	if Input.is_joy_button_pressed(1,JOY_BUTTON_A) or Input.is_action_pressed("p2_accept"):
 		player2Character = grid_container.get_child(player2SelectionIndex).get_character()
 		player_2_ready.show()
 	
+
 	_check_selection_done()
 
 func _get_selection_index(currentIndex : int, direction : Vector2):
@@ -107,9 +112,13 @@ func _get_selection_index(currentIndex : int, direction : Vector2):
 		return currentIndex
 
 func _check_selection_done():
-	if player1Character and player2SelectionIndex:
-		pass
+	if player1Character and player2Character:
 		##TODO: Save seleciton in global script and change scenes
+		GameManager.player1Resource = player1Character
+		GameManager.player2Resource = player2Character
+		var tween = create_tween()
+		tween.tween_property(camera_2d, "position", Vector2(960,1620),0.15)
+		tween.tween_callback(start_game).set_delay(0.2)
 
 
 func _on_back_pressed() -> void:
@@ -118,4 +127,8 @@ func _on_back_pressed() -> void:
 	tween.tween_callback(change_scene).set_delay(0.2)
 
 func change_scene() -> void:
-	GameManager.change_scene("TITLE")
+	GameManager.change_scene(GameManager.Scenes.TITLE)
+
+func start_game() -> void:
+	##NOTE Temporary start game
+	GameManager.change_scene(GameManager.Scenes.BASIC_ARENA)

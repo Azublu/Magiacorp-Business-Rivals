@@ -1,15 +1,19 @@
 extends Camera2D
+class_name GameCamera
 
-@export var player1 : Node2D
-@export var player2 : Node2D
 @export var min_zoom : float = 0.45
 @export var max_zoom : float = 2.0
 @export var margin : Vector2 = Vector2(100,100)
 
+var player1
+var player2 
+
+func init_players(player_1,player_2) -> void:
+	player1 = player_1
+	player2 = player_2
+
 func _ready() -> void:
-	await get_tree().create_timer(0.5).timeout
-	player1 = GameManager.player1
-	player2 = GameManager.player2
+	GameManager.game_camera = self
 
 ##NOTE: Taken from a tutorial
 func _process(_delta: float) -> void:

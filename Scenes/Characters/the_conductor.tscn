@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c6uoskmqpy0wo"]
 
-[ext_resource type="Material" uid="uid://woeqgljipmuv" path="res://Shaders/player2_outline.tres" id="1_agxm5"]
 [ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_cxqc5"]
 [ext_resource type="Texture2D" uid="uid://cia5cijmyxq86" path="res://Sprites/TheConductor/TrainConductor.png" id="2_8eqr7"]
 [ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_agxm5"]
@@ -348,7 +347,6 @@ _data = {
 }
 
 [node name="TheConductor" type="CharacterBody2D" unique_id=166882256 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component", "shield")]
-material = ExtResource("1_agxm5")
 script = ExtResource("1_cxqc5")
 sprite = NodePath("ConductorCollider/Sprite2D")
 animation_tree = NodePath("ConductorCollider/Sprite2D/AnimationTree")

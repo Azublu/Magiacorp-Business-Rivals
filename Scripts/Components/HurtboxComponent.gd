@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _on_area_entered(hitbox: Hitbox) -> void:
 	if hitbox == null: return
+	if GameManager.game_finished : return
 
 	#Prevents player2 from hurting self as long as hitboxes and hurtboxes are configured properly
 	if player_index == hitbox.player_index: return
@@ -21,8 +22,8 @@ func _on_area_entered(hitbox: Hitbox) -> void:
 	if shielding:
 		var knockback_dir = (hitbox.owner.global_position - global_position).normalized()
 		##NOTE: Using player hit signal to bounce attacking player back
-		EventHandler.player_hit.emit(0,knockback_dir,1000,hitbox.knockback_dur,player_index)
-		EventHandler.player_hit.emit(0,-knockback_dir,hitbox.knockback/2,hitbox.knockback_dur,hitbox.player_index)
+		EventHandler.player_hit.emit(0,knockback_dir,1000,hitbox.knockback_dur,player_index,hitbox.player_index)
+		EventHandler.player_hit.emit(0,-knockback_dir,hitbox.knockback/2,hitbox.knockback_dur,hitbox.player_index,player_index)
 		EventHandler.player_blocked.emit(hitbox.damage,player_index)
 		return
 

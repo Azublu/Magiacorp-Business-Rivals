@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://djxq3j1lgbr54"]
 
-[ext_resource type="Material" uid="uid://cdmjlsuhauqgf" path="res://Shaders/player1_outline.tres" id="1_8nndx"]
 [ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_fnb6x"]
 [ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_fnb6x"]
 [ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_bfuc1"]
@@ -349,7 +348,6 @@ _data = {
 }
 
 [node name="MagicalGirl" type="CharacterBody2D" unique_id=502907146 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component", "shield")]
-material = ExtResource("1_8nndx")
 script = ExtResource("1_fnb6x")
 sprite = NodePath("MagicalGirlCollider/Sprite2D")
 animation_tree = NodePath("MagicalGirlCollider/Sprite2D/AnimationTree")

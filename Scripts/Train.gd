@@ -34,6 +34,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func randomize_spawn() -> void:
+	
+	if GameManager.player1.dead or GameManager.player2.dead: return
+	
 	var random_spawn = randi_range(1,2)
 	
 	match random_spawn:

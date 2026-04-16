@@ -24,4 +24,4 @@ func _on_back_pressed() -> void:
 	tween.tween_property(camera_2d, "position", Vector2(960,540),0.15)
 
 func change_scene() -> void:
-	GameManager.change_scene("CHAR_SELECT")
+	GameManager.change_scene(GameManager.Scenes.CHAR_SELECT)

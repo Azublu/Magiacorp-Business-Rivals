@@ -1,6 +1,8 @@
 [gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://bwkckcc7sgjh2"]
 
 [ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_chj0f"]
+[ext_resource type="PackedScene" uid="uid://c6uoskmqpy0wo" path="res://Scenes/Characters/the_conductor.tscn" id="1_r2c2i"]
+[ext_resource type="Texture2D" uid="uid://hcea05yop87" path="res://Sprites/Icons/TheConductorIcon.png" id="2_obqpa"]
 [ext_resource type="Texture2D" uid="uid://cia5cijmyxq86" path="res://Sprites/TheConductor/TrainConductor.png" id="2_xoa18"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d5kv"]
@@ -11,4 +13,6 @@ region = Rect2(45, 23, 128, 128)
 script = ExtResource("1_chj0f")
 name = "The Conductor"
 texture = SubResource("AtlasTexture_0d5kv")
+icon = ExtResource("2_obqpa")
+Character = ExtResource("1_r2c2i")
 metadata/_custom_type_script = "uid://c3t7287xkrp23"

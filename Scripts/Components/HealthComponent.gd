@@ -37,7 +37,8 @@ func player_hit(damage : int ,_knockback_dir : Vector2 ,_knockback_force : float
 
 func player_blocked(blocked_damage, recieved_index) -> void:
 	if recieved_index == player_index:
-		focus -= blocked_damage/10
+		print(blocked_damage)
+		focus -= (blocked_damage/10) * 2
 
 #Uses EventBus pattern to update UI in game
 func update_health(new_health : int) -> void:

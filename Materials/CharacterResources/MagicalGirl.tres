@@ -1,7 +1,9 @@
 [gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://b3lh85iipvvfk"]
 
+[ext_resource type="PackedScene" uid="uid://djxq3j1lgbr54" path="res://Scenes/Characters/magical_girl.tscn" id="1_etdtj"]
 [ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_y1jbe"]
 [ext_resource type="Texture2D" uid="uid://b1de35iu0qb2d" path="res://Sprites/MagicalGirl/MagicalGirlSpriteSheet.png" id="2_24etx"]
+[ext_resource type="Texture2D" uid="uid://cpip1gqk354wn" path="res://Sprites/Icons/MagicalGirlIcon.png" id="2_x03m5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pneff"]
 atlas = ExtResource("2_24etx")
@@ -11,4 +13,6 @@ region = Rect2(20.100021, -19.999992, 128, 128.79999)
 script = ExtResource("1_y1jbe")
 name = "Stella"
 texture = SubResource("AtlasTexture_pneff")
+icon = ExtResource("2_x03m5")
+Character = ExtResource("1_etdtj")
 metadata/_custom_type_script = "uid://c3t7287xkrp23"

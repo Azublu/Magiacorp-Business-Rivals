@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="CharacterResource" format=3 uid="uid://cprox0rbl2tkx"]
 
+[ext_resource type="PackedScene" uid="uid://dcv1jpnrf50fd" path="res://Scenes/Characters/tharacia.tscn" id="1_d4l2e"]
 [ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_i53wj"]
+[ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_22ry8"]
 [ext_resource type="Texture2D" uid="uid://dc8gy3nyprlp0" path="res://Sprites/Tharacia.png" id="2_wq5f8"]
 
 [resource]
 script = ExtResource("1_i53wj")
 name = "Tharacia"
 texture = ExtResource("2_wq5f8")
+icon = ExtResource("2_22ry8")
+Character = ExtResource("1_d4l2e")
 metadata/_custom_type_script = "uid://c3t7287xkrp23"

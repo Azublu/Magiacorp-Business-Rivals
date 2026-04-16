@@ -226,11 +226,11 @@ func movement(horizontal_input, speed : float, floor_damping :float,delta : floa
 		return move_toward(velocity.x, 0, (FRICTION * delta) * floor_damping)
 
 ##NOTE: Recieve player damage info from EventBus
-func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_force : float,knockback_dur,received_index : int, hit_player_index : int) -> void:
+func player_hit(damage : int ,knockback_dir : Vector2 ,knockback_power : float,knockback_dur,received_index : int, hit_player_index : int) -> void:
 	if received_index == player_index : return
 	if hit_player_index == player_index:
 		if damage == 0 : on_block = true
-		apply_knockback(knockback_dir,knockback_force,knockback_dur)
+		apply_knockback(knockback_dir,knockback_power,knockback_dur)
 
 ##NOTE: Attempt to handle buffering jump inputs
 func jump() -> void:

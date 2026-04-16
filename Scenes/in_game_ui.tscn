@@ -146,7 +146,7 @@ border_color = Color(1, 1, 1, 1)
 expand_margin_left = 12.0
 expand_margin_right = 12.0
 
-[node name="InGameUI" type="Control" unique_id=41853807 node_paths=PackedStringArray("player1_health", "player1_damaged_health", "player1_damaged_timer", "player1_focus1", "player1_focus2", "player1_focus3", "player1_focus4", "player1_focus5", "player2_health", "player2_damaged_health", "player2_damaged_timer", "player2_focus1", "player2_focus2", "player2_focus3", "player2_focus4", "player2_focus5")]
+[node name="InGameUI" type="Control" unique_id=41853807 node_paths=PackedStringArray("player1_icon", "player1_health", "player1_damaged_health", "player1_damaged_timer", "player1_focus1", "player1_focus2", "player1_focus3", "player1_focus4", "player1_focus5", "player2_icon", "player2_health", "player2_damaged_health", "player2_damaged_timer", "player2_focus1", "player2_focus2", "player2_focus3", "player2_focus4", "player2_focus5")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,6 +154,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gtfj6")
+player1_icon = NodePath("Player1/HBoxContainer/TextureRect/ClippingMask/Player1Icon")
 player1_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/HealthBar")
 player1_damaged_health = NodePath("Player1/HBoxContainer/VBoxContainer/Health/DamagedBar")
 player1_damaged_timer = NodePath("Timers/Player1DamagedTimer")
@@ -162,6 +163,7 @@ player1_focus2 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContain
 player1_focus3 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar3")
 player1_focus4 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar2")
 player1_focus5 = NodePath("Player1/HBoxContainer/VBoxContainer/Focus/HBoxContainer/FocusBar")
+player2_icon = NodePath("Player2/HBoxContainer/TextureRect/ClippingMask/Player2Icon")
 player2_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/HealthBar")
 player2_damaged_health = NodePath("Player2/HBoxContainer/VBoxContainer/Health/DamagedBar")
 player2_damaged_timer = NodePath("Timers/Player2DamagedTimer")
@@ -441,6 +443,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_gtfj6")
+flip_h = true
 
 [node name="Panel" type="Panel" parent="Player2/HBoxContainer/TextureRect" unique_id=1636661156]
 layout_mode = 0
