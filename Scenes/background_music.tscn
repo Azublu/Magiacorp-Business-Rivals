@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dsv0t1bfhqknp"]
+
+[ext_resource type="AudioStream" uid="uid://cuqpacep7ite2" path="res://Sound/BBeat.mp3" id="1_pu4hd"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=1894709714]
+stream = ExtResource("1_pu4hd")
+autoplay = true
+bus = &"BGMusic"

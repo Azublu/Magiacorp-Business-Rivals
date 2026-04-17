@@ -2,7 +2,9 @@ extends Control
 
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var back: Button = %Back
+@onready var settings_back: Button = %SettingsBack
 @onready var versus: Button = $VBoxContainer/Versus
+
 
 func _ready() -> void:
 	versus.grab_focus()
@@ -12,6 +14,11 @@ func _on_versus_pressed() -> void:
 	var tween = create_tween()
 	tween.tween_property(camera_2d, "position", Vector2(960,-540),0.15)
 	tween.tween_callback(change_scene).set_delay(0.2)
+
+func _on_settings_pressed() -> void:
+	settings_back.grab_focus()
+	var tween = create_tween()
+	tween.tween_property(camera_2d, "position", Vector2(2888,540),0.15)
 
 func _on_credits_pressed() -> void:
 	back.grab_focus()

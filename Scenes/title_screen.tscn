@@ -2,10 +2,60 @@
 
 [ext_resource type="Theme" uid="uid://cpgfw238jmbmv" path="res://Materials/GameTheme.tres" id="1_klylv"]
 [ext_resource type="Script" uid="uid://bd2ypvsl60pkl" path="res://Scripts/TitleScreen.gd" id="1_p3fck"]
+[ext_resource type="Script" uid="uid://201der26j708" path="res://Scripts/bg_music_volume_slider.gd" id="3_4gxqj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klylv"]
 bg_color = Color(0.94509804, 0.7294118, 1, 1)
 skew = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vd4x"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 7.0
+expand_margin_top = 7.0
+expand_margin_right = 7.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n82rj"]
+bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twnyg"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.94509804, 0.7294118, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55kwv"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12m1t"]
+draw_center = false
+skew = Vector2(0.25, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3fck"]
 bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
@@ -111,6 +161,112 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_klylv")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="PinkPanels/Panel" unique_id=1825252664]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = -441.0
+offset_right = 810.0
+offset_bottom = 441.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="TitleContainer" type="MarginContainer" parent="PinkPanels/Panel/VBoxContainer" unique_id=904686171]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PinkPanels/Panel/VBoxContainer/TitleContainer" unique_id=356921358]
+layout_mode = 2
+theme = ExtResource("1_klylv")
+theme_override_colors/font_outline_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+theme_override_font_sizes/font_size = 128
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="PinkPanels/Panel/VBoxContainer" unique_id=1600381973]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 2
+
+[node name="Title" type="Label" parent="PinkPanels/Panel/VBoxContainer/GridContainer" unique_id=1922662414]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_klylv")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 72
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolume" type="HSlider" parent="PinkPanels/Panel/VBoxContainer/GridContainer" unique_id=217380726]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_6vd4x")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_n82rj")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_n82rj")
+max_value = 1.0
+step = 0.001
+tick_count = 5
+ticks_on_borders = true
+script = ExtResource("3_4gxqj")
+bus_name = "Master"
+
+[node name="Title2" type="Label" parent="PinkPanels/Panel/VBoxContainer/GridContainer" unique_id=1333537368]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_klylv")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 72
+text = "Background Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BGMusicVolumeSlider" type="HSlider" parent="PinkPanels/Panel/VBoxContainer/GridContainer" unique_id=182266916]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_6vd4x")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_n82rj")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_n82rj")
+max_value = 1.0
+step = 0.001
+tick_count = 5
+ticks_on_borders = true
+script = ExtResource("3_4gxqj")
+bus_name = "BGMusic"
+
+[node name="MarginContainer" type="MarginContainer" parent="PinkPanels/Panel/VBoxContainer" unique_id=137172195]
+layout_mode = 2
+theme_override_constants/margin_top = 32
+
+[node name="SettingsBack" type="Button" parent="PinkPanels/Panel/VBoxContainer/MarginContainer" unique_id=1100226510]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Training")
+focus_neighbor_bottom = NodePath("../Credits")
+focus_next = NodePath("../Training")
+theme = ExtResource("1_klylv")
+theme_override_colors/font_pressed_color = Color(0.94509804, 0.7294118, 1, 1)
+theme_override_colors/font_hover_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/pressed = SubResource("StyleBoxFlat_twnyg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_55kwv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_12m1t")
+text = "BACK"
+
 [node name="Panel2" type="Panel" parent="PinkPanels" unique_id=148976334]
 layout_mode = 1
 anchors_preset = 6
@@ -164,7 +320,6 @@ alignment = 1
 
 [node name="TitleContainer" type="MarginContainer" parent="BluePanels/Panel3/VBoxContainer" unique_id=151011911]
 layout_mode = 2
-theme_override_constants/margin_bottom = 32
 
 [node name="Label" type="Label" parent="BluePanels/Panel3/VBoxContainer/TitleContainer" unique_id=86497507]
 layout_mode = 2
@@ -178,7 +333,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 72
 text = "Art and Programming"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -187,44 +342,45 @@ vertical_alignment = 1
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 64
 text = "Christian Andrion"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Title2" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1274030681]
+[node name="Title2" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=252250708]
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 96
-text = "Character Select Script"
+theme_override_font_sizes/font_size = 72
+text = "MUSIC"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text2" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1972026252]
+[node name="Text2" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=191502283]
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 72
-text = "Modified from tutorial by DevDrache "
+theme_override_font_sizes/font_size = 64
+text = "Chipmunk"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Title3" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1177481669]
+[node name="Title3" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1274030681]
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 96
-text = "Particle Deleter Script"
+theme_override_font_sizes/font_size = 72
+text = "Additional Scripts"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Text3" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1807358790]
+[node name="Text3" type="Label" parent="BluePanels/Panel3/VBoxContainer" unique_id=1972026252]
 layout_mode = 2
 theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 0
-theme_override_font_sizes/font_size = 72
-text = "Tutorial by ACB_Gamez"
+theme_override_font_sizes/font_size = 64
+text = "Character Select - Modified from tutorial by DevDrache 
+Particle Deleter Script - Tutorial by ACB_Gamez"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -264,5 +420,7 @@ position = Vector2(960, -540)
 position_smoothing_enabled = true
 
 [connection signal="pressed" from="VBoxContainer/Versus" to="." method="_on_versus_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="PinkPanels/Panel/VBoxContainer/MarginContainer/SettingsBack" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="BluePanels/Panel3/VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

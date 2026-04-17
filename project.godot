@@ -21,6 +21,7 @@ InputHandler="*uid://tqbs3k5ssdh2"
 EventHandler="*uid://b2ixn0usnjyc"
 ParticlesCache="uid://dpto3cc85pbur"
 GameManager="*uid://bjgmb87sc1bg2"
+BackgroundMusic="uid://dsv0t1bfhqknp"
 
 [display]
 
