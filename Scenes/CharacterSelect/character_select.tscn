@@ -70,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wmu6h")
 
-[node name="Panel" type="Panel" parent="." unique_id=267246735]
+[node name="Panel" type="Panel" parent="." unique_id=1647066767]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -85,7 +85,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5g387")
 
-[node name="Panel2" type="Panel" parent="." unique_id=1273680806]
+[node name="Panel2" type="Panel" parent="." unique_id=1815488927]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -100,7 +100,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5g387")
 
-[node name="Panel3" type="Panel" parent="." unique_id=368456934]
+[node name="Panel3" type="Panel" parent="." unique_id=1477887889]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -115,7 +115,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_elf14")
 
-[node name="Panel4" type="Panel" parent="." unique_id=1334439021]
+[node name="Panel4" type="Panel" parent="." unique_id=892717567]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -167,6 +167,25 @@ theme = ExtResource("1_qwmle")
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 1"
 
+[node name="P1Wins" type="Label" parent="Header/Player1/Panel" unique_id=1330249412]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_yrfit")
+theme_override_font_sizes/font_size = 32
+text = "WINS: 0"
+horizontal_alignment = 1
+
 [node name="Title" type="MarginContainer" parent="Header" unique_id=1261838766]
 layout_mode = 2
 theme_override_constants/margin_left = 64
@@ -210,6 +229,25 @@ theme_override_colors/font_outline_color = Color(0.3254902, 0.7529412, 0.8980392
 theme_override_font_sizes/font_size = 64
 text = "PLAYER 2"
 horizontal_alignment = 2
+
+[node name="P2Wins" type="Label" parent="Header/Player2/Panel" unique_id=986242210]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -40.0
+offset_right = 56.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_yrfit")
+theme_override_font_sizes/font_size = 32
+text = "WINS: 0"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=928811827]
 layout_mode = 1

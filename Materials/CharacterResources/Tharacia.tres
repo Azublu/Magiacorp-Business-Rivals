@@ -3,12 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://dcv1jpnrf50fd" path="res://Scenes/Characters/tharacia.tscn" id="1_d4l2e"]
 [ext_resource type="Script" uid="uid://c3t7287xkrp23" path="res://Materials/CharacterResources/character_resource.gd" id="1_i53wj"]
 [ext_resource type="Texture2D" uid="uid://d1h8kddyxaulm" path="res://Sprites/Icons/TharaciaIcon.png" id="2_22ry8"]
-[ext_resource type="Texture2D" uid="uid://dc8gy3nyprlp0" path="res://Sprites/Tharacia.png" id="2_wq5f8"]
+[ext_resource type="Texture2D" uid="uid://ds33s2t225681" path="res://Sprites/Tharacia/TharaciaSheet.png" id="4_d4l2e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22ry8"]
+atlas = ExtResource("4_d4l2e")
+region = Rect2(65.20001, -7.213997, 128, 128.79999)
 
 [resource]
 script = ExtResource("1_i53wj")
 name = "Tharacia"
-texture = ExtResource("2_wq5f8")
+texture = SubResource("AtlasTexture_22ry8")
 icon = ExtResource("2_22ry8")
 Character = ExtResource("1_d4l2e")
 metadata/_custom_type_script = "uid://c3t7287xkrp23"

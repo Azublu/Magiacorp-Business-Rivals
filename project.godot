@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="MonsterMechsAndMagicalGirls"
+config/name="MagiacorpBusinessRivals"
+config/description="Magical Vehicle Platformer Game Jam Game"
 run/main_scene="uid://gxdj54sbrj1x"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bfksppb6jb3a4"
+
+[audio]
+
+buses/default_bus_layout="uid://bglmukhorsi8g"
 
 [autoload]
 
@@ -27,7 +32,7 @@ BackgroundMusic="uid://dsv0t1bfhqknp"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/resizable=false
+window/size/mode=3
 window/stretch/mode="viewport"
 
 [input]

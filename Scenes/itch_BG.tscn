@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://dqlxbyjqj2y14"]
+
+[ext_resource type="Theme" uid="uid://cpgfw238jmbmv" path="res://Materials/GameTheme.tres" id="1_k8130"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3u4w"]
+bg_color = Color(0.94509804, 0.7294118, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8130"]
+bg_color = Color(0.94509804, 0.7294118, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xquvb"]
+bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_272is"]
+bg_color = Color(0.3254902, 0.7529412, 0.8980392, 1)
+
+[node name="Node2D" type="Control" unique_id=563045262]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1743973109]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -579.0
+offset_right = 2.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j3u4w")
+
+[node name="Panel2" type="Panel" parent="." unique_id=1453684223]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -418.0
+offset_top = -579.0
+offset_right = -391.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k8130")
+
+[node name="Panel3" type="Panel" parent="." unique_id=1982757522]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1919.0
+offset_top = -579.0
+offset_right = -1572.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xquvb")
+
+[node name="Panel4" type="Panel" parent="." unique_id=1090504514]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -1515.0
+offset_top = -579.0
+offset_right = -1488.0
+offset_bottom = 579.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_272is")
+
+[node name="Label" type="Label" parent="." unique_id=622100358]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -129.5
+offset_right = 536.0
+offset_bottom = 129.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k8130")
+theme_override_font_sizes/font_size = 192
+text = "MAGIACORP
+BUSINESS
+RIVALS"
+horizontal_alignment = 1
+vertical_alignment = 1

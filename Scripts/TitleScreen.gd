@@ -31,4 +31,10 @@ func _on_back_pressed() -> void:
 	tween.tween_property(camera_2d, "position", Vector2(960,540),0.15)
 
 func change_scene() -> void:
+	GameManager.p1wins = 0
+	GameManager.p2wins = 0
 	GameManager.change_scene(GameManager.Scenes.CHAR_SELECT)
+
+
+func _on_exit_pressed() -> void:
+	get_tree().quit()

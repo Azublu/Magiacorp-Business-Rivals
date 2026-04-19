@@ -1,16 +1,364 @@
 [gd_scene format=3 uid="uid://dcv1jpnrf50fd"]
 
-[ext_resource type="Texture2D" uid="uid://dc8gy3nyprlp0" path="res://Sprites/Tharacia.png" id="1_jd3uc"]
 [ext_resource type="Script" uid="uid://bibcfbtsm7quf" path="res://Scripts/PlayerController.gd" id="1_s80wy"]
+[ext_resource type="Texture2D" uid="uid://ds33s2t225681" path="res://Sprites/Tharacia/TharaciaSheet.png" id="2_8isbu"]
+[ext_resource type="Script" uid="uid://bkg5myu3ltrhb" path="res://Scripts/Components/HurtboxComponent.gd" id="3_tp4a8"]
+[ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/Components/HitboxComponent.gd" id="4_p6sfi"]
+[ext_resource type="Texture2D" uid="uid://c1bead07innol" path="res://Sprites/ShieldSheet.png" id="5_6vdhh"]
+[ext_resource type="Script" uid="uid://bgac6oqtw4oih" path="res://Scripts/Components/HealthComponent.gd" id="6_8l3mp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s80wy"]
-radius = 25.0
+radius = 11.0
 height = 80.0
 
-[node name="Tharacia" type="CharacterBody2D" unique_id=64088558 node_paths=PackedStringArray("sprite", "dash_timer")]
+[sub_resource type="Animation" id="Animation_qis2q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:attacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fnb6x"]
+resource_name = "attack"
+length = 0.45
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:attacking")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_bfuc1"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_t7iwb"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8nndx"]
+resource_name = "jump"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_nrcec"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lh1n8"]
+_data = {
+&"RESET": SubResource("Animation_qis2q"),
+&"attack": SubResource("Animation_fnb6x"),
+&"hurt": SubResource("Animation_bfuc1"),
+&"idle": SubResource("Animation_t7iwb"),
+&"jump": SubResource("Animation_8nndx"),
+&"run": SubResource("Animation_nrcec")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8nndx"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fnb6x"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qis2q"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bfuc1"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7iwb"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nndx"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnb6x"]
+advance_mode = 2
+advance_expression = "velocity.y < -100"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qis2q"]
+advance_mode = 2
+advance_expression = "is_on_floor() == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bfuc1"]
+advance_mode = 2
+advance_expression = "abs(velocity.x) > 10"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7iwb"]
+advance_mode = 2
+advance_expression = "abs(velocity.x) < 10"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nrcec"]
+advance_mode = 2
+advance_expression = "velocity.y < -100"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nxp51"]
+advance_mode = 2
+advance_expression = "attacking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rioco"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0j3ab"]
+advance_mode = 2
+advance_expression = "attacking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yyivp"]
+advance_mode = 2
+advance_expression = "attacking == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2r8k"]
+advance_mode = 2
+advance_expression = "dashing == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0ad0"]
+advance_mode = 2
+advance_expression = "on_hit == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ygw08"]
+advance_mode = 2
+advance_expression = "on_hit == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_88lhi"]
+advance_mode = 2
+advance_expression = "on_hit == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ejsvn"]
+advance_mode = 2
+advance_expression = "on_hit == true"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6a2x"]
+advance_mode = 2
+advance_expression = "on_hit == false"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7bnvk"]
+states/attack/node = SubResource("AnimationNodeAnimation_8nndx")
+states/attack/position = Vector2(627.80005, 28.807999)
+states/hurt/node = SubResource("AnimationNodeAnimation_fnb6x")
+states/hurt/position = Vector2(627.80005, 188)
+states/idle/node = SubResource("AnimationNodeAnimation_qis2q")
+states/idle/position = Vector2(352, 100)
+states/jump/node = SubResource("AnimationNodeAnimation_bfuc1")
+states/jump/position = Vector2(447.6, 15.6)
+states/run/node = SubResource("AnimationNodeAnimation_t7iwb")
+states/run/position = Vector2(447.768, 208)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_8nndx"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_fnb6x"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_qis2q"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_bfuc1"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_t7iwb"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_nrcec"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_nxp51"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_rioco"), "run", "attack", SubResource("AnimationNodeStateMachineTransition_0j3ab"), "jump", "attack", SubResource("AnimationNodeStateMachineTransition_yyivp"), "attack", "run", SubResource("AnimationNodeStateMachineTransition_s2r8k"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_e0ad0"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_ygw08"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_88lhi"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_ejsvn"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_q6a2x")]
+graph_offset = Vector2(73.310265, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_srcvd"]
+size = Vector2(30, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3wgj"]
+size = Vector2(82, 43)
+
+[sub_resource type="Animation" id="Animation_nxp51"]
+resource_name = "PerfectBlock"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_rioco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tyn8d"]
+_data = {
+&"PerfectBlock": SubResource("Animation_nxp51"),
+&"RESET": SubResource("Animation_rioco")
+}
+
+[node name="Tharacia" type="CharacterBody2D" unique_id=64088558 node_paths=PackedStringArray("sprite", "animation_tree", "dash_timer", "hurtbox", "hitbox", "health_component", "shield")]
 script = ExtResource("1_s80wy")
 sprite = NodePath("TharaciaCollider/Sprite2D")
+animation_tree = NodePath("TharaciaCollider/Sprite2D/AnimationTree")
 dash_timer = NodePath("Timers/DashTimer")
+hurtbox = NodePath("TharaciaCollider/Sprite2D/Hurtbox")
+hitbox = NodePath("TharaciaCollider/Sprite2D/Hitbox")
+health_component = NodePath("HealthComponent")
+shield = NodePath("TharaciaCollider/Sprite2D/Shield")
+default_speed = 300.0
+dash_speed = 1200.0
+dash_duration = 0.1
 
 [node name="TharaciaCollider" type="CollisionShape2D" parent="." unique_id=755831259]
 use_parent_material = true
@@ -18,9 +366,64 @@ shape = SubResource("CapsuleShape2D_s80wy")
 
 [node name="Sprite2D" type="Sprite2D" parent="TharaciaCollider" unique_id=1926277280]
 use_parent_material = true
-texture = ExtResource("1_jd3uc")
+texture = ExtResource("2_8isbu")
+offset = Vector2(-25, 0)
+hframes = 3
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TharaciaCollider/Sprite2D" unique_id=1802439096]
+libraries/ = SubResource("AnimationLibrary_lh1n8")
+
+[node name="AnimationTree" type="AnimationTree" parent="TharaciaCollider/Sprite2D" unique_id=116720311]
+tree_root = SubResource("AnimationNodeStateMachine_7bnvk")
+advance_expression_base_node = NodePath("../../..")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="Hurtbox" type="Area2D" parent="TharaciaCollider/Sprite2D" unique_id=1094129196]
+position = Vector2(0, 8)
+script = ExtResource("3_tp4a8")
+metadata/_custom_type_script = "uid://bkg5myu3ltrhb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TharaciaCollider/Sprite2D/Hurtbox" unique_id=807103610]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_srcvd")
+debug_color = Color(4.307702e-06, 0.64908695, 0.1690875, 0.41960785)
+
+[node name="Hitbox" type="Area2D" parent="TharaciaCollider/Sprite2D" unique_id=1950806509]
+position = Vector2(0, 8)
+script = ExtResource("4_p6sfi")
+damage = 80.0
+knockback = 1000.0
+knockback_dur = 0.1
+metadata/_custom_type_script = "uid://uondwb2w4yxs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TharaciaCollider/Sprite2D/Hitbox" unique_id=1851603018]
+position = Vector2(-59, -8.5)
+shape = SubResource("RectangleShape2D_l3wgj")
+disabled = true
+debug_color = Color(0.9923771, 0, 0.25922605, 0.41960785)
+
+[node name="Shield" type="Sprite2D" parent="TharaciaCollider/Sprite2D" unique_id=392457274]
+visible = false
+position = Vector2(-4, 3)
+texture = ExtResource("5_6vdhh")
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TharaciaCollider/Sprite2D/Shield" unique_id=34116180]
+libraries/ = SubResource("AnimationLibrary_tyn8d")
+autoplay = &"PerfectBlock"
 
 [node name="Timers" type="Node" parent="." unique_id=1810307042]
 
 [node name="DashTimer" type="Timer" parent="Timers" unique_id=2092642048]
 one_shot = true
+
+[node name="FocusRegenTimer" type="Timer" parent="Timers" unique_id=1980100719]
+one_shot = true
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1291516302 node_paths=PackedStringArray("focus_regen_timer")]
+script = ExtResource("6_8l3mp")
+focus_regen_timer = NodePath("../Timers/FocusRegenTimer")
+metadata/_custom_type_script = "uid://bgac6oqtw4oih"

@@ -9,6 +9,9 @@ const MAIN_GAME = preload("uid://bhd3pj64xixwa")
 @export var player2 : Player
 @export var player2Resource : CharacterResource
 
+var p1wins : int = 0
+var p2wins : int = 0
+
 var game_camera : Camera2D
 
 var game_finished : bool = false

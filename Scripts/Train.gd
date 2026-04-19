@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 2000.0
 
+@onready var left_warning: Label = %LeftWarning
+@onready var right_warning: Label = %RightWarning
+
 @onready var train_spawner_timer: Timer = $TrainSpawner
 
 @export var left_spawn_marker : Marker2D
@@ -11,6 +14,10 @@ const SPEED = 2000.0
 enum SpawnLocations {LEFT,RIGHT, UP}
 
 var train_spawn : SpawnLocations
+
+func _ready() -> void:
+	left_warning.hide()
+	right_warning.hide()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -43,9 +50,21 @@ func randomize_spawn() -> void:
 		1:
 			train_spawn = SpawnLocations.LEFT
 			global_position = left_spawn_marker.global_position
+			for i in 3:
+				right_warning.show()
+				await get_tree().create_timer(0.2).timeout
+				right_warning.hide()
+				await get_tree().create_timer(0.2).timeout
+
 		2:
 			train_spawn = SpawnLocations.RIGHT
 			global_position = right_spawn_marker.global_position
+			for i in 3:
+				left_warning.show()
+				await get_tree().create_timer(0.2).timeout
+				left_warning.hide()
+				await get_tree().create_timer(0.2).timeout
+
 		3:
 			train_spawn = SpawnLocations.UP
 			global_position = up_spawn_marker.global_position

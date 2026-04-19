@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		available_jumps = max_jumps
 	
 	##NOTE move this in the future when refining the player defeated state
-	if dead: return ##TODO: Add dead animation
+	if dead: on_hit = true ##TODO: Add dead animation
 
 	var floor_damping : float = 1.0 if is_on_floor() else 0.2
 	var horizontal_input := InputHandler.get_horizontal_input(player_index)

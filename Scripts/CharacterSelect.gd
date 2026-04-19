@@ -9,6 +9,8 @@ extends Control
 @onready var player_1_ready: Label = %Player1Ready
 @onready var player_2_ready: Label = %Player2Ready
 @onready var camera_2d: Camera2D = $Camera2D
+@onready var p1wins: Label = %P1Wins
+@onready var p2wins: Label = %P2Wins
 
 var player1SelectionIndex : int = 0
 var player2SelectionIndex : int = 0
@@ -18,6 +20,7 @@ var player2Character : CharacterResource
 
 func _ready() -> void:
 	_refresh_selection()
+	update_win_tally()
 	var tween = create_tween()
 	tween.tween_property(camera_2d, "position", Vector2(960,540),0.15)
 
@@ -121,6 +124,19 @@ func _check_selection_done():
 		tween.tween_callback(start_game).set_delay(0.2)
 
 
+func update_win_tally() -> void:
+	if GameManager.p1wins <= 0:
+		p1wins.hide()
+	else:
+		p1wins.show()
+		p1wins.text = "WINS: " + str(GameManager.p1wins)
+	
+	if GameManager.p2wins <= 0:
+		p2wins.hide()
+	else:
+		p2wins.show()
+		p2wins.text = "WINS: " + str(GameManager.p2wins)
+
 func _on_back_pressed() -> void:
 	var tween = create_tween()
 	tween.tween_property(camera_2d, "position", Vector2(960,1620),0.15)
@@ -130,5 +146,5 @@ func change_scene() -> void:
 	GameManager.change_scene(GameManager.Scenes.TITLE)
 
 func start_game() -> void:
-	##NOTE Temporary start game
+	##NOTE Temporary start game before stage select
 	GameManager.change_scene(GameManager.Scenes.BASIC_ARENA)

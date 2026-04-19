@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://df735yj5d6vq5" path="res://Scripts/Train.gd" id="1_3wk56"]
 [ext_resource type="Texture2D" uid="uid://c4cmptbrfhd3f" path="res://Sprites/TheConductor/Train.png" id="1_y583u"]
 [ext_resource type="Script" uid="uid://uondwb2w4yxs" path="res://Scripts/Components/HitboxComponent.gd" id="2_lolkc"]
+[ext_resource type="FontFile" uid="uid://vpcjay16fml8" path="res://Sprites/Fonts/BoldPixels.ttf" id="4_ghpuu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lolkc"]
 
@@ -43,5 +44,46 @@ debug_color = Color(0.9939652, 0, 0.23662096, 0.41960785)
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=36230271]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1501681385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftWarning" type="Label" parent="CanvasLayer/Control" unique_id=1454231308]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -256.0
+offset_right = 160.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8039216, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("4_ghpuu")
+theme_override_font_sizes/font_size = 128
+text = " ! "
+
+[node name="RightWarning" type="Label" parent="CanvasLayer/Control" unique_id=1902495276]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -256.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.8039216, 0.1764706, 0.1764706, 1)
+theme_override_fonts/font = ExtResource("4_ghpuu")
+theme_override_font_sizes/font_size = 128
+text = " ! "
 
 [connection signal="timeout" from="TrainSpawner" to="." method="_on_train_spawner_timeout"]

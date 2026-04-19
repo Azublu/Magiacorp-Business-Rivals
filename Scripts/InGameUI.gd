@@ -51,6 +51,8 @@ func update_health(health_value : int, player_index : int) -> void:
 				player1_damaged_health.value = 0
 				winner_text.text = "PLAYER 2 WINS!"
 				winner_text.visible = true
+				if not GameManager.game_finished:
+					GameManager.p2wins += 1
 				GameManager.player1.dead = true
 				GameManager.game_over()
 			else:
@@ -61,6 +63,8 @@ func update_health(health_value : int, player_index : int) -> void:
 				player2_damaged_health.value = 0
 				winner_text.text = "PLAYER 1 WINS!"
 				winner_text.visible = true
+				if not GameManager.game_finished:
+					GameManager.p1wins += 1
 				GameManager.player2.dead = true
 				GameManager.game_over()
 			else:

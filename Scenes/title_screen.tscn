@@ -101,31 +101,20 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../Credits")
-focus_neighbor_bottom = NodePath("../Training")
-focus_next = NodePath("../Credits")
+focus_neighbor_top = NodePath("../Exit")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Exit")
 theme = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 64
 text = "VERSUS"
-
-[node name="Training" type="Button" parent="VBoxContainer" unique_id=1184578789]
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../Versus")
-focus_neighbor_bottom = NodePath("../Settings")
-focus_next = NodePath("../Versus")
-theme = ExtResource("1_klylv")
-theme_override_font_sizes/font_size = 64
-text = "TRAINING"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=2057263539]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../Training")
+focus_neighbor_top = NodePath("../Versus")
 focus_neighbor_bottom = NodePath("../Credits")
-focus_next = NodePath("../Training")
+focus_next = NodePath("../Versus")
 theme = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 64
 text = "SETTINGS"
@@ -135,11 +124,22 @@ custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 focus_neighbor_top = NodePath("../Settings")
-focus_neighbor_bottom = NodePath("../Versus")
+focus_neighbor_bottom = NodePath("../Exit")
 focus_next = NodePath("../Settings")
 theme = ExtResource("1_klylv")
 theme_override_font_sizes/font_size = 64
 text = "CREDITS"
+
+[node name="Exit" type="Button" parent="VBoxContainer" unique_id=1184578789]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Credits")
+focus_neighbor_bottom = NodePath("../Versus")
+focus_next = NodePath("../Credits")
+theme = ExtResource("1_klylv")
+theme_override_font_sizes/font_size = 64
+text = "EXIT"
 
 [node name="PinkPanels" type="Control" parent="." unique_id=1350022545]
 anchors_preset = 0
@@ -380,7 +380,8 @@ theme = ExtResource("1_klylv")
 theme_override_constants/outline_size = 0
 theme_override_font_sizes/font_size = 64
 text = "Character Select - Modified from tutorial by DevDrache 
-Particle Deleter Script - Tutorial by ACB_Gamez"
+Particle Deleter Script - Tutorial by ACB_Gamez
+Volume Slider Script - The Shaggy Dev"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -422,5 +423,6 @@ position_smoothing_enabled = true
 [connection signal="pressed" from="VBoxContainer/Versus" to="." method="_on_versus_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="PinkPanels/Panel/VBoxContainer/MarginContainer/SettingsBack" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="BluePanels/Panel3/VBoxContainer/MarginContainer/Back" to="." method="_on_back_pressed"]

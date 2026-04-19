@@ -93,10 +93,10 @@ position = Vector2(-500, -500)
 position = Vector2(500, -500)
 
 [node name="LSpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=371517386]
-position = Vector2(3000, -100)
+position = Vector2(5000, -100)
 
 [node name="RSpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=1399516155]
-position = Vector2(-3000, -100)
+position = Vector2(-5000, -100)
 
 [node name="USpawnMarker" type="Marker2D" parent="Floor/FloorMarks" unique_id=218354755]
 position = Vector2(0, -2000)

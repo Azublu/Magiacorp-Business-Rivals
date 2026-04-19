@@ -208,6 +208,7 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_ey7ub")
+flip_h = true
 
 [node name="Panel" type="Panel" parent="Player1/HBoxContainer/TextureRect" unique_id=954371766]
 layout_mode = 0
@@ -443,7 +444,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_gtfj6")
-flip_h = true
 
 [node name="Panel" type="Panel" parent="Player2/HBoxContainer/TextureRect" unique_id=1636661156]
 layout_mode = 0
